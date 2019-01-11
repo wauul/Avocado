@@ -26,6 +26,11 @@ public class Avocado {
     
     static void setaccID(int x){
         accID = x;
+    }    
+    
+    
+    static int getaccID(){
+        return accID;
     }
     
 
@@ -38,9 +43,7 @@ public class Avocado {
     static Connection DBConn() { 
         Connection conn = null;
         try{
-            conn = DriverManager.getConnection(DBCON,USRNAME,PASSWORD);
-            
-            System.out.println("Connected");
+            conn = DriverManager.getConnection(DBCON,USRNAME,PASSWORD);         
         }
         catch(SQLException e){
             System.err.println(e);

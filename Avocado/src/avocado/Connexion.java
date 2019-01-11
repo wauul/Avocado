@@ -101,10 +101,23 @@ public class Connexion extends javax.swing.JFrame {
             
             if(res.getInt("Id_Avoc") == 0)
             {
-                
+                new FirstConnect(Connexion.this, true).setVisible(true);              
+            String id_admin = "UPDATE `utilisateur` SET `Id_Avoc`=? WHERE NomUtilisateur = ?";
+            try{
+            req = conn.prepareStatement(id_admin);
+            req.setInt(1, Avocado.getaccID());
+            req.setString(2, usrText.getText());
+            req.executeUpdate();
             }
-            Avocado.setaccID(res.getInt("Id_Avoc"));
+            catch (SQLException ex) {
+            Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.print(Avocado.getaccID());
+            }
+            else Avocado.setaccID(res.getInt("Id_Avoc"));
             JOptionPane.showMessageDialog(null, "Connecter Avec Succées");
+            new MainFrame().setVisible(true);
+            this.dispose();
         }
         else{
             JOptionPane.showMessageDialog(null, "Nom d'utilisateur ou Mot de passe Incorrecte", "Accées Refusé", JOptionPane.ERROR_MESSAGE);
