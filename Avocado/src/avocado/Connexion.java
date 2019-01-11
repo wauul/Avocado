@@ -98,6 +98,12 @@ public class Connexion extends javax.swing.JFrame {
             if(res.getString("Type_Compte") == "Administrateur") Avocado.setaccType(1);
             else if (res.getString("Type_Compte") == "Secrétaire") Avocado.setaccType(3);
             else Avocado.setaccType(2);
+            
+            if(res.getInt("Id_Avoc") == 0)
+            {
+                
+            }
+            Avocado.setaccID(res.getInt("Id_Avoc"));
             JOptionPane.showMessageDialog(null, "Connecter Avec Succées");
         }
         else{
