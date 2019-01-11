@@ -16,12 +16,19 @@ public class Avocado {
     private static final String DBCON = "jdbc:mysql://localhost:3306/avocado";
     
     private static int accType;
+    private static int accID;
     
     static void setaccType(int x){
         accType = x;
     }
     
+
     
+    static void setaccID(int x){
+        accID = x;
+    }
+    
+
     public static void main(String[] args) throws SQLException {
         Connexion c = new Connexion();
         c.setVisible(true);
