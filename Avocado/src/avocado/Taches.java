@@ -29,10 +29,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "taches", catalog = "avocado", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Taches_1.findAll", query = "SELECT t FROM Taches_1 t")
-    , @NamedQuery(name = "Taches_1.findByIdTask", query = "SELECT t FROM Taches_1 t WHERE t.idTask = :idTask")
-    , @NamedQuery(name = "Taches_1.findByTitreTask", query = "SELECT t FROM Taches_1 t WHERE t.titreTask = :titreTask")
-    , @NamedQuery(name = "Taches_1.findByDateTask", query = "SELECT t FROM Taches_1 t WHERE t.dateTask = :dateTask")})
+    @NamedQuery(name = "Taches.findAll", query = "SELECT t FROM Taches t")
+    , @NamedQuery(name = "Taches.findByIdTask", query = "SELECT t FROM Taches t WHERE t.idTask = :idTask")
+    , @NamedQuery(name = "Taches.findByTitreTask", query = "SELECT t FROM Taches t WHERE t.titreTask = :titreTask")
+    , @NamedQuery(name = "Taches.findByDateTask", query = "SELECT t FROM Taches t WHERE t.dateTask = :dateTask")})
 public class Taches implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -121,7 +121,7 @@ public class Taches implements Serializable {
 
     @Override
     public String toString() {
-        return "avocado.Taches_1[ idTask=" + idTask + " ]";
+        return "avocado.Taches[ idTask=" + idTask + " ]";
     }
     
 }

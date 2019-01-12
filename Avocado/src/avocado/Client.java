@@ -35,17 +35,17 @@ import javax.xml.bind.annotation.XmlTransient;
     @UniqueConstraint(columnNames = {"Num_CarteId"})})
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Client_1.findAll", query = "SELECT c FROM Client_1 c")
-    , @NamedQuery(name = "Client_1.findByIdCli", query = "SELECT c FROM Client_1 c WHERE c.idCli = :idCli")
-    , @NamedQuery(name = "Client_1.findByNomCli", query = "SELECT c FROM Client_1 c WHERE c.nomCli = :nomCli")
-    , @NamedQuery(name = "Client_1.findByPrenomCli", query = "SELECT c FROM Client_1 c WHERE c.prenomCli = :prenomCli")
-    , @NamedQuery(name = "Client_1.findByDateNaissCli", query = "SELECT c FROM Client_1 c WHERE c.dateNaissCli = :dateNaissCli")
-    , @NamedQuery(name = "Client_1.findByTelCli", query = "SELECT c FROM Client_1 c WHERE c.telCli = :telCli")
-    , @NamedQuery(name = "Client_1.findByEmailCli", query = "SELECT c FROM Client_1 c WHERE c.emailCli = :emailCli")
-    , @NamedQuery(name = "Client_1.findByTypeCarteID", query = "SELECT c FROM Client_1 c WHERE c.typeCarteID = :typeCarteID")
-    , @NamedQuery(name = "Client_1.findByNumCarteId", query = "SELECT c FROM Client_1 c WHERE c.numCarteId = :numCarteId")
-    , @NamedQuery(name = "Client_1.findByTypeCli", query = "SELECT c FROM Client_1 c WHERE c.typeCli = :typeCli")
-    , @NamedQuery(name = "Client_1.findByRaiSocCli", query = "SELECT c FROM Client_1 c WHERE c.raiSocCli = :raiSocCli")})
+    @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c")
+    , @NamedQuery(name = "Client.findByIdCli", query = "SELECT c FROM Client c WHERE c.idCli = :idCli")
+    , @NamedQuery(name = "Client.findByNomCli", query = "SELECT c FROM Client c WHERE c.nomCli = :nomCli")
+    , @NamedQuery(name = "Client.findByPrenomCli", query = "SELECT c FROM Client c WHERE c.prenomCli = :prenomCli")
+    , @NamedQuery(name = "Client.findByDateNaissCli", query = "SELECT c FROM Client c WHERE c.dateNaissCli = :dateNaissCli")
+    , @NamedQuery(name = "Client.findByTelCli", query = "SELECT c FROM Client c WHERE c.telCli = :telCli")
+    , @NamedQuery(name = "Client.findByEmailCli", query = "SELECT c FROM Client c WHERE c.emailCli = :emailCli")
+    , @NamedQuery(name = "Client.findByTypeCarteID", query = "SELECT c FROM Client c WHERE c.typeCarteID = :typeCarteID")
+    , @NamedQuery(name = "Client.findByNumCarteId", query = "SELECT c FROM Client c WHERE c.numCarteId = :numCarteId")
+    , @NamedQuery(name = "Client.findByTypeCli", query = "SELECT c FROM Client c WHERE c.typeCli = :typeCli")
+    , @NamedQuery(name = "Client.findByRaiSocCli", query = "SELECT c FROM Client c WHERE c.raiSocCli = :raiSocCli")})
 public class Client implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -240,7 +240,7 @@ public class Client implements Serializable {
 
     @Override
     public String toString() {
-        return "avocado.Client_1[ idCli=" + idCli + " ]";
+        return "avocado.Client[ idCli=" + idCli + " ]";
     }
     
 }

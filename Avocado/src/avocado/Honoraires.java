@@ -35,13 +35,13 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "honoraires", catalog = "avocado", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Honoraires_1.findAll", query = "SELECT h FROM Honoraires_1 h")
-    , @NamedQuery(name = "Honoraires_1.findByIdHon", query = "SELECT h FROM Honoraires_1 h WHERE h.idHon = :idHon")
-    , @NamedQuery(name = "Honoraires_1.findByTypePaiement", query = "SELECT h FROM Honoraires_1 h WHERE h.typePaiement = :typePaiement")
-    , @NamedQuery(name = "Honoraires_1.findByDatePaiement", query = "SELECT h FROM Honoraires_1 h WHERE h.datePaiement = :datePaiement")
-    , @NamedQuery(name = "Honoraires_1.findByTotalPaiement", query = "SELECT h FROM Honoraires_1 h WHERE h.totalPaiement = :totalPaiement")
-    , @NamedQuery(name = "Honoraires_1.findByRestePaiement", query = "SELECT h FROM Honoraires_1 h WHERE h.restePaiement = :restePaiement")
-    , @NamedQuery(name = "Honoraires_1.findByMontantPaiement", query = "SELECT h FROM Honoraires_1 h WHERE h.montantPaiement = :montantPaiement")})
+    @NamedQuery(name = "Honoraires.findAll", query = "SELECT h FROM Honoraires h")
+    , @NamedQuery(name = "Honoraires.findByIdHon", query = "SELECT h FROM Honoraires h WHERE h.idHon = :idHon")
+    , @NamedQuery(name = "Honoraires.findByTypePaiement", query = "SELECT h FROM Honoraires h WHERE h.typePaiement = :typePaiement")
+    , @NamedQuery(name = "Honoraires.findByDatePaiement", query = "SELECT h FROM Honoraires h WHERE h.datePaiement = :datePaiement")
+    , @NamedQuery(name = "Honoraires.findByTotalPaiement", query = "SELECT h FROM Honoraires h WHERE h.totalPaiement = :totalPaiement")
+    , @NamedQuery(name = "Honoraires.findByRestePaiement", query = "SELECT h FROM Honoraires h WHERE h.restePaiement = :restePaiement")
+    , @NamedQuery(name = "Honoraires.findByMontantPaiement", query = "SELECT h FROM Honoraires h WHERE h.montantPaiement = :montantPaiement")})
 public class Honoraires implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -188,7 +188,7 @@ public class Honoraires implements Serializable {
 
     @Override
     public String toString() {
-        return "avocado.Honoraires_1[ idHon=" + idHon + " ]";
+        return "avocado.Honoraires[ idHon=" + idHon + " ]";
     }
     
 }
