@@ -22,8 +22,8 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         this.pack();
-this.setDefaultLookAndFeelDecorated(true);
-this.setExtendedState(MainFrame.MAXIMIZED_BOTH);
+        this.setDefaultLookAndFeelDecorated(true);
+        this.setExtendedState(MainFrame.MAXIMIZED_BOTH);
     }
     
     /**
