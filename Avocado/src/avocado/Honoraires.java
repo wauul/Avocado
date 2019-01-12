@@ -5,95 +5,190 @@
  */
 package avocado;
 
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 /**
  *
  * @author Waul
  */
-public class Honoraires {
-    
-    private int id_hon;
-    private int id_aff;
-    private String Type_Paiement;
-    private String Date_Paiement;
-    private double Total;
-    private double Paye;
-    private double Restant;
-    private String Commentaire_hon;
+@Entity
+@Table(name = "honoraires", catalog = "avocado", schema = "")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Honoraires_1.findAll", query = "SELECT h FROM Honoraires_1 h")
+    , @NamedQuery(name = "Honoraires_1.findByIdHon", query = "SELECT h FROM Honoraires_1 h WHERE h.idHon = :idHon")
+    , @NamedQuery(name = "Honoraires_1.findByTypePaiement", query = "SELECT h FROM Honoraires_1 h WHERE h.typePaiement = :typePaiement")
+    , @NamedQuery(name = "Honoraires_1.findByDatePaiement", query = "SELECT h FROM Honoraires_1 h WHERE h.datePaiement = :datePaiement")
+    , @NamedQuery(name = "Honoraires_1.findByTotalPaiement", query = "SELECT h FROM Honoraires_1 h WHERE h.totalPaiement = :totalPaiement")
+    , @NamedQuery(name = "Honoraires_1.findByRestePaiement", query = "SELECT h FROM Honoraires_1 h WHERE h.restePaiement = :restePaiement")
+    , @NamedQuery(name = "Honoraires_1.findByMontantPaiement", query = "SELECT h FROM Honoraires_1 h WHERE h.montantPaiement = :montantPaiement")})
+public class Honoraires implements Serializable {
 
-    public Honoraires(int id_hon, int id_aff, String Type_Paiement, String Date_Paiement, double Total, double Paye, double Restant, String Commentaire_hon) {
-        this.id_hon = id_hon;
-        this.id_aff = id_aff;
-        this.Type_Paiement = Type_Paiement;
-        this.Date_Paiement = Date_Paiement;
-        this.Total = Total;
-        this.Paye = Paye;
-        this.Restant = Restant;
-        this.Commentaire_hon = Commentaire_hon;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "Id_Hon", nullable = false)
+    private Integer idHon;
+    @Basic(optional = false)
+    @Column(name = "Type_Paiement", nullable = false, length = 8)
+    private String typePaiement;
+    @Basic(optional = false)
+    @Column(name = "Date_Paiement", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date datePaiement;
+    @Basic(optional = false)
+    @Column(name = "Total_Paiement", nullable = false)
+    private double totalPaiement;
+    @Basic(optional = false)
+    @Column(name = "Reste_Paiement", nullable = false)
+    private double restePaiement;
+    @Basic(optional = false)
+    @Column(name = "Montant_Paiement", nullable = false)
+    private double montantPaiement;
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "Comm_Hon", nullable = false, length = 2147483647)
+    private String commHon;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "honnorairesAff")
+    private Collection<Affaires> affairesCollection;
+    @JoinColumn(name = "Id_Aff", referencedColumnName = "Id_Aff", nullable = false)
+    @ManyToOne(optional = false)
+    private Affaires idAff;
+
+    public Honoraires() {
     }
 
-    public int getId_hon() {
-        return id_hon;
+    public Honoraires(Integer idHon) {
+        this.idHon = idHon;
     }
 
-    public void setId_hon(int id_hon) {
-        this.id_hon = id_hon;
+    public Honoraires(Integer idHon, String typePaiement, Date datePaiement, double totalPaiement, double restePaiement, double montantPaiement, String commHon) {
+        this.idHon = idHon;
+        this.typePaiement = typePaiement;
+        this.datePaiement = datePaiement;
+        this.totalPaiement = totalPaiement;
+        this.restePaiement = restePaiement;
+        this.montantPaiement = montantPaiement;
+        this.commHon = commHon;
     }
 
-    public int getId_aff() {
-        return id_aff;
+    public Integer getIdHon() {
+        return idHon;
     }
 
-    public void setId_aff(int id_aff) {
-        this.id_aff = id_aff;
+    public void setIdHon(Integer idHon) {
+        this.idHon = idHon;
     }
 
-    public String getType_Paiement() {
-        return Type_Paiement;
+    public String getTypePaiement() {
+        return typePaiement;
     }
 
-    public void setType_Paiement(String Type_Paiement) {
-        this.Type_Paiement = Type_Paiement;
+    public void setTypePaiement(String typePaiement) {
+        this.typePaiement = typePaiement;
     }
 
-    public String getDate_Paiement() {
-        return Date_Paiement;
+    public Date getDatePaiement() {
+        return datePaiement;
     }
 
-    public void setDate_Paiement(String Date_Paiement) {
-        this.Date_Paiement = Date_Paiement;
+    public void setDatePaiement(Date datePaiement) {
+        this.datePaiement = datePaiement;
     }
 
-    public double getTotal() {
-        return Total;
+    public double getTotalPaiement() {
+        return totalPaiement;
     }
 
-    public void setTotal(double Total) {
-        this.Total = Total;
+    public void setTotalPaiement(double totalPaiement) {
+        this.totalPaiement = totalPaiement;
     }
 
-    public double getPaye() {
-        return Paye;
+    public double getRestePaiement() {
+        return restePaiement;
     }
 
-    public void setPaye(double Paye) {
-        this.Paye = Paye;
+    public void setRestePaiement(double restePaiement) {
+        this.restePaiement = restePaiement;
     }
 
-    public double getRestant() {
-        return Restant;
+    public double getMontantPaiement() {
+        return montantPaiement;
     }
 
-    public void setRestant(double Restant) {
-        this.Restant = Restant;
+    public void setMontantPaiement(double montantPaiement) {
+        this.montantPaiement = montantPaiement;
     }
 
-    public String getCommentaire_hon() {
-        return Commentaire_hon;
+    public String getCommHon() {
+        return commHon;
     }
 
-    public void setCommentaire_hon(String Commentaire_hon) {
-        this.Commentaire_hon = Commentaire_hon;
+    public void setCommHon(String commHon) {
+        this.commHon = commHon;
     }
-    
+
+    @XmlTransient
+    public Collection<Affaires> getAffairesCollection() {
+        return affairesCollection;
+    }
+
+    public void setAffairesCollection(Collection<Affaires> affairesCollection) {
+        this.affairesCollection = affairesCollection;
+    }
+
+    public Affaires getIdAff() {
+        return idAff;
+    }
+
+    public void setIdAff(Affaires idAff) {
+        this.idAff = idAff;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idHon != null ? idHon.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Honoraires)) {
+            return false;
+        }
+        Honoraires other = (Honoraires) object;
+        if ((this.idHon == null && other.idHon != null) || (this.idHon != null && !this.idHon.equals(other.idHon))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "avocado.Honoraires_1[ idHon=" + idHon + " ]";
+    }
     
 }
