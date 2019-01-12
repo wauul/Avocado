@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package avocado;
+import java.awt.Component;
 import java.sql.*;
 /**
  *
@@ -50,5 +51,6 @@ public class Avocado {
         }
     return conn;//To change body of generated methods, choose Tools | Templates.
     }
+    
     
 }
