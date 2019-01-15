@@ -25,7 +25,24 @@ public class AjoutAffaire extends javax.swing.JPanel {
     public AjoutAffaire() {
         initComponents();
     }
+    
+    static int Id_Cli;
+    static int Id_Adv;
+    static int type_c;
 
+    public static int getType_c() {
+        return type_c;
+    }
+
+    public static void setId_Cli(int Id_Cli) {
+        AjoutAffaire.Id_Cli = Id_Cli;
+    }
+
+    public static void setId_Adv(int Id_Adv) {
+        AjoutAffaire.Id_Adv = Id_Adv;
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,6 +90,11 @@ public class AjoutAffaire extends javax.swing.JPanel {
         jPanel1.setName("Parties"); // NOI18N
 
         jButton1.setText("..");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Client");
@@ -82,6 +104,11 @@ public class AjoutAffaire extends javax.swing.JPanel {
         Contre_ID.setEditable(false);
 
         jButton2.setText("..");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Contre");
@@ -162,6 +189,11 @@ public class AjoutAffaire extends javax.swing.JPanel {
         jLabel5.setText("Juridiction");
 
         jButton4.setText("..");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         Nature.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Civile", "Criminelle", "Administrative", "Commerciale", "Référé", "Statut Personnel", "Correctionelle", "Sociale", "Foncière" }));
         Nature.setSelectedIndex(-1);
@@ -371,15 +403,28 @@ public class AjoutAffaire extends javax.swing.JPanel {
         jDate.setDate(null);
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+            // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        type_c =1 ;   
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        type_c = 2 ;       // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Avocat_Contre_ID;
-    private javax.swing.JTextField Client_ID;
+    private static javax.swing.JTextField Avocat_Contre_ID;
+    private static javax.swing.JTextField Client_ID;
     private javax.swing.JTextArea Commentaire;
-    private javax.swing.JTextField Contre_ID;
+    private static javax.swing.JTextField Contre_ID;
     private javax.swing.JTextArea Details;
     private javax.swing.JTextField Honnoraires;
-    private javax.swing.JTextField Juridiction_ID;
+    private static javax.swing.JTextField Juridiction_ID;
     private javax.swing.JComboBox<String> Nature;
     private javax.swing.JTextArea Objet;
     private javax.swing.JComboBox<String> Qualite;
