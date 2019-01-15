@@ -4,12 +4,9 @@
  * and open the template in the editor.
  */
 package avocado;
-import avocado.Avocado;
-import com.mysql.cj.MysqlConnection;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.*;
 
 
 /**
