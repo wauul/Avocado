@@ -86,6 +86,8 @@ public class AjoutAffaire extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Contre");
 
+        Avocat_Contre_ID.setEditable(false);
+
         jButton3.setText("..");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
