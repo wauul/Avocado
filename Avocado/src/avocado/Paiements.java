@@ -22,7 +22,27 @@ public class Paiements extends javax.swing.JPanel {
     public Paiements() {
         initComponents();
     }
-
+    
+    
+    public static void setPaieInfo(Double Mont, int i){
+        Total.setText(Mont.toString());
+        Connection conn = null;
+        PreparedStatement req = null;
+        ResultSet res = null;
+        conn = Avocado.DBConn();
+        String sql = "SELECT  MIN(`Reste_Paiement`) FROM `honoraires` WHERE `Id_Aff` = ?";
+        try {
+            req = conn.prepareStatement(sql);
+            req.setInt(1, i);
+            res = req.executeQuery(sql);
+            if(res.next()){
+                Reste.setText(Double.toString(res.getDouble("Reste_Paiement")));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Paiements.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

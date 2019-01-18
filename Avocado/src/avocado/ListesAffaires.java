@@ -55,7 +55,7 @@ public class ListesAffaires extends javax.swing.JPanel {
                 }
                
                 res.close();
-         final String columnNames[] = {"ID Affaire","Active?","Qualité","Nature de l'affaire", "Objet", "Commentaire sur l'affaire"};
+         final String columnNames[] = {"ID Affaire","Active?","Qualité","Nature de l'affaire", "Objet", "Date"};
          jTable1.setModel(new DefaultTableModel(t,columnNames));
          ListSelectionModel listMod =  jTable1.getSelectionModel();
          listMod.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

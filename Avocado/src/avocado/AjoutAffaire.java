@@ -363,9 +363,9 @@ public class AjoutAffaire extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        Connection conn = null;
+    Connection conn = null;
     PreparedStatement req = null;
-    ResultSet res = null;
+    
   
     conn = Avocado.DBConn();
     String sql = "INSERT INTO `affaires`(`Id_Client`, `Id_Contre`, `Id_AvocatContre`, `Etat_Aff`, `Qualité_Plai`, `Id_Juri`, `Nature_Aff`, `Objet`, `Date_Ent_Aff`, `Honnoraires_Aff`, `Comm_Aff`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
@@ -378,15 +378,16 @@ public class AjoutAffaire extends javax.swing.JPanel {
         req.setString(5, Qualite.getSelectedItem().toString());
         req.setString(6, Juridiction_ID.getText());
         req.setString(7, Nature.getSelectedItem().toString());
-        req.setString(8, Juridiction_ID.getText());
-        req.setString(9, Objet.getText());
-        req.setDate(10, (Date) jDate.getDate());
-        req.setDouble(11, Double.parseDouble(Honnoraires.getText()));
-        req.setString(12, Details.getText());
+        req.setString(8, Objet.getText());
+        req.setDate(9, (Date) jDate.getDate());
+        req.setDouble(10, Double.parseDouble(Honnoraires.getText()));
+        req.setString(11, Details.getText());
         req.executeUpdate(); } 
     catch (SQLException ex) {
             Logger.getLogger(AjoutAffaire.class.getName()).log(Level.SEVERE, null, ex);
-        }       // TODO add your handling code here:
+        }    
+    
+    
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
