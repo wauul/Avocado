@@ -29,7 +29,7 @@ public class ListesAffaires extends javax.swing.JPanel {
     public ListesAffaires() {
         initComponents();
     conn = Avocado.DBConn();
-    String sql = "SELECT `Id_Aff`, `Etat_Aff`, `Qualité_Plai`, `Nature_Aff`, `Objet`, `Date_Ent_Aff`, `Comm_Aff` FROM `affaires`";
+    String sql = "SELECT `Id_Aff`, `Qualité_Plai`, `Nature_Aff`, `Objet`, `Date_Ent_Aff`, `Comm_Aff` FROM `affaires`";
     try{
         req = conn.prepareStatement(sql);
         res = req.executeQuery();
@@ -50,7 +50,6 @@ public class ListesAffaires extends javax.swing.JPanel {
                    t[i][3]=res.getString(4);
                    t[i][4]=res.getString(5);
                    t[i][5]=res.getString(6);
-                   t[i][6]=res.getString(7);
                    i++;
                 }
                
@@ -78,6 +77,7 @@ public class ListesAffaires extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -100,8 +100,9 @@ public class ListesAffaires extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 174, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

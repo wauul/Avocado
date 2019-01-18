@@ -5,6 +5,7 @@
  */
 package avocado;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -287,14 +288,15 @@ public class AjoutAudience extends javax.swing.JPanel {
         Connection conn = null;
         PreparedStatement req = null;
         ResultSet res = null;
-
+                   SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+           String s= dateFormat.format(Date.getDate());
         conn = Avocado.DBConn();
         String sql = "INSERT INTO `audiences`(`Id_Aff`, `Id_Juri`, `Date_Aud`, `Statut_Aud`, `Id_Resp`, `Id_Sub`, `Comm_Aud`) VALUES (?,?,?,?,?,?,?)";
         try{
             req = conn.prepareStatement(sql);
             req.setString(1, Affaire.getText());
             req.setString(2, Juridiction.getText());
-            req.setDate(3, (Date) Date.getDate());
+            req.setString(3, s);
             req.setString(4, (String) Statut.getSelectedItem());
             req.setString(5, Membre.getText());
             req.setString(6, Confrere.getText());
