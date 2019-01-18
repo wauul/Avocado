@@ -17,6 +17,14 @@ public class ConfrereMenu extends javax.swing.JPanel {
     public ConfrereMenu() {
         initComponents();
     }
+    
+    static int btnC;
+
+    public static int getBtnC() {
+        return btnC;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,7 +51,7 @@ public class ConfrereMenu extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(61, 120, 197));
-        setPreferredSize(new java.awt.Dimension(300, 307));
+        setPreferredSize(new java.awt.Dimension(300, 600));
 
         jPanel4.setBackground(new java.awt.Color(120, 168, 252));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -234,31 +242,40 @@ public class ConfrereMenu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_exitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMousePressed
-        // TODO add your handling code here:
 
         System.exit(0);
     }//GEN-LAST:event_btn_exitMousePressed
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
         AjoutConfrere t = new AjoutConfrere();
-        MainFrame.AffichageTab(t);    // TODO add your handling code here:
+        MainFrame.AffichageTab(t);
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
-        ListesAffaires t = new ListesAffaires();
-        MainFrame.AffichageTab(t);     // TODO add your handling code here:
+        btnC = 2; 
+        ListeConfreres t = new ListeConfreres();
+        MainFrame.AffichageTab(t); 
+        // TODO add your handling code here:
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
+        btnC = 1;
+        ListeConfreres t = new ListeConfreres();
+        MainFrame.AffichageTab(t);  
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel7MouseClicked
 
     private void jPanel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseClicked
-        // TODO add your handling code here:
+        btnC = 3;
+        ListeConfreres t = new ListeConfreres();
+        MainFrame.AffichageTab(t); 
+                // TODO add your handling code here:
     }//GEN-LAST:event_jPanel8MouseClicked
 
     private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
-        // TODO add your handling code here:
+        ListeConfreres t = new ListeConfreres();
+        MainFrame.AffichageTab(t); 
+        btnC = 4;        // TODO add your handling code here:
     }//GEN-LAST:event_jPanel9MouseClicked
 
 

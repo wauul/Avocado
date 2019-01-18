@@ -38,6 +38,7 @@ public final class MainFrame extends javax.swing.JFrame {
         
     public static void AffichageTab(javax.swing.JPanel x){
         PanelAffichage.removeAll();
+        
         PanelAffichage.setLayout(new java.awt.BorderLayout());    
         PanelAffichage.add(x);
         PanelAffichage.revalidate(); 
@@ -502,14 +503,14 @@ public final class MainFrame extends javax.swing.JFrame {
         PanelAffichage.setLayout(PanelAffichageLayout);
         PanelAffichageLayout.setHorizontalGroup(
             PanelAffichageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 940, Short.MAX_VALUE)
+            .addGap(0, 890, Short.MAX_VALUE)
         );
         PanelAffichageLayout.setVerticalGroup(
             PanelAffichageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
+            .addGap(0, 630, Short.MAX_VALUE)
         );
 
-        getContentPane().add(PanelAffichage, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 940, 690));
+        getContentPane().add(PanelAffichage, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 890, 630));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -532,7 +533,7 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
           setColor(btn_4); 
         ind_4.setOpaque(true);
-        resetColor(new JPanel[]{btn_2,btn_3,btn_1}, new JPanel[]{ind_2,ind_3, ind_1,ind_5,ind_6,ind_7});
+        resetColor(new JPanel[]{btn_2,btn_1,btn_3,btn_5,btn_6,btn_7}, new JPanel[]{ind_2,ind_3, ind_1,ind_5,ind_6,ind_7});
     }//GEN-LAST:event_btn_4MousePressed
 
     private void btn_2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_2MouseReleased

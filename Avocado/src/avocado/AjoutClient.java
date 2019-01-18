@@ -6,14 +6,12 @@
 package avocado;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 
 /**
  *
@@ -158,6 +156,12 @@ public class AjoutClient extends javax.swing.JPanel {
             }
         });
 
+        Tel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TelKeyTyped(evt);
+            }
+        });
+
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setText("Numéro de Telephone");
 
@@ -173,10 +177,10 @@ public class AjoutClient extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
                     .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Tel)
-                    .addComponent(Mail, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Mail, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(Tel))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -355,6 +359,11 @@ public class AjoutClient extends javax.swing.JPanel {
     private void RaisSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RaisSocialActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RaisSocialActionPerformed
+
+    private void TelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TelKeyTyped
+        char typed = evt.getKeyChar();
+        if(!Character.isDigit(typed)) evt.consume();
+    }//GEN-LAST:event_TelKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

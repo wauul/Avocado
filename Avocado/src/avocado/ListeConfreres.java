@@ -25,9 +25,9 @@ public class ListeConfreres extends javax.swing.JPanel {
     ResultSet res = null;
     
     
-public void AffichageClients(){
-        conn = Avocado.DBConn();
-    String sql = "SELECT `Nom_Cli`, `Prenom_Cli`, `DateNaiss_Cli`, `Ville`, `Add_Cli`, `Tel_Cli`, `Email_Cli`, `Type_CarteID`, `Num_CarteId`, `RaiSoc_Cli` FROM `client` WHERE Type_Cli = 'Client'";
+public void AffichageConfrere(){
+    conn = Avocado.DBConn();
+    String sql = "SELECT  `Nom_Conf`, `Prenom_Conf`, `Ville`, `Add_Conf`, `Tel_Conf`, `Email_Conf`, `Type_Conf`, `Description` FROM `confreres`";
     try{
         req = conn.prepareStatement(sql);
         res = req.executeQuery();
@@ -38,7 +38,7 @@ public void AffichageClients(){
                     k=res.getRow();
                     res.beforeFirst();
                 }
-               Object[][] t=new Object[k][10];
+               Object[][] t=new Object[k][8];
         
         while(res.next())
         {
@@ -50,13 +50,11 @@ public void AffichageClients(){
                    t[i][5]=res.getString(6);
                    t[i][6]=res.getString(7);
                    t[i][7]=res.getString(8);
-                   t[i][8]=res.getString(9);
-                   t[i][9]=res.getString(10);
                    i++;
                 }
                
                 res.close();
-         final String columnNames[] = {"Nom","Prénom","Date de naissance","Ville", "Adresse", "Numéro de téléphone", "Email", "Type De Document", "Numero De Carte", "Raison Social"};
+         final String columnNames[] = {"Nom","Prénom","Ville", "Adresse", "Numéro de téléphone", "Email", "Poste", "Description"};
          jTable1.setModel(new DefaultTableModel(t,columnNames));
          ListSelectionModel listMod =  jTable1.getSelectionModel();
          listMod.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -67,11 +65,26 @@ public void AffichageClients(){
         }
 }
 
-public void AffichagePartieAdv() {
-        conn = Avocado.DBConn();
-    String sql = "SELECT `Nom_Cli`, `Prenom_Cli`, `DateNaiss_Cli`, `Ville`, `Add_Cli`, `Tel_Cli`, `Email_Cli`, `Type_CarteID`, `Num_CarteId`, `RaiSoc_Cli` FROM `client` WHERE Type_Cli = 'Partie Adverse'";
+public void Affichage(int b) {
+    conn = Avocado.DBConn();
+    String job= null;
+        switch (b) {
+            case 2:
+                job = "Avocat";
+                break;
+            case 3:
+                job = "Huissier";
+                break;
+            case 4:
+                job = "Notaire";
+                break;
+            default:
+                break;
+        }
+    String sql = "SELECT  `Nom_Conf`, `Prenom_Conf`, `Ville`, `Add_Conf`, `Tel_Conf`, `Email_Conf`, `Description` FROM `confreres` WHERE `Type_Conf` = ?";
     try{
         req = conn.prepareStatement(sql);
+        req.setString(1, job);
         res = req.executeQuery();
         int k= 0;
         int i = 0;
@@ -80,7 +93,7 @@ public void AffichagePartieAdv() {
                     k=res.getRow();
                     res.beforeFirst();
                 }
-               Object[][] t=new Object[k][10];
+               Object[][] t=new Object[k][7];
         
         while(res.next())
         {
@@ -91,14 +104,11 @@ public void AffichagePartieAdv() {
                    t[i][4]=res.getString(5);
                    t[i][5]=res.getString(6);
                    t[i][6]=res.getString(7);
-                   t[i][7]=res.getString(8);
-                   t[i][8]=res.getString(9);
-                   t[i][9]=res.getString(10);
                    i++;
                 }
                
                 res.close();
-         final String columnNames[] = {"Nom","Prénom","Date de naissance","Ville", "Adresse", "Numéro de téléphone", "Email", "Type De Document", "Numero De Carte", "Raison Social"};
+         final String columnNames[] = {"Nom","Prénom","Ville", "Adresse", "Numéro de téléphone", "Email", "Description"};
          jTable1.setModel(new DefaultTableModel(t,columnNames));
          ListSelectionModel listMod =  jTable1.getSelectionModel();
          listMod.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -113,8 +123,8 @@ public void AffichagePartieAdv() {
      */
     public ListeConfreres() {
         initComponents();
-        if(ClientMenu.getbtnC() == 1) AffichageClients();
-        else if(ClientMenu.getbtnC() == 2) AffichagePartieAdv();
+        if(ConfrereMenu.getBtnC() == 1) AffichageConfrere();
+        else  Affichage(ConfrereMenu.getBtnC());
     }
 
     /**

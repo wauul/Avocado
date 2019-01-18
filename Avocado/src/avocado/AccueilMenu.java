@@ -19,7 +19,6 @@ import java.util.logging.Logger;
 public class AccueilMenu extends javax.swing.JPanel {
 
     public String GetUserName(int ID){
-        System.out.print(Avocado.getaccID());
         String ret = "AVOCADO";
         Connection conn = null;
         PreparedStatement req;
