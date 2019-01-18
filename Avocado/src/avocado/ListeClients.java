@@ -18,18 +18,16 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Waul
  */
-public class ListesAffaires extends javax.swing.JPanel {
+public class ListeClients extends javax.swing.JPanel {
 
     Connection conn = null;
     PreparedStatement req = null;
     ResultSet res = null;
-    /**
-     * Creates new form ListesAffaires
-     */
-    public ListesAffaires() {
-        initComponents();
-    conn = Avocado.DBConn();
-    String sql = "SELECT `Titre_Aff`, `Qualité_Plai`, `Nature_Aff`, `Objet`, `Date_Ent_Aff`, `Comm_Aff` FROM `affaires`";
+    
+    
+public void AffichageClients(){
+        conn = Avocado.DBConn();
+    String sql = "SELECT `Nom_Cli`, `Prenom_Cli`, `DateNaiss_Cli`, `Ville`, `Add_Cli`, `Tel_Cli`, `Email_Cli`, `Type_CarteID`, `Num_CarteId`, `RaiSoc_Cli` FROM `client` WHERE Type_Cli = 'Client'";
     try{
         req = conn.prepareStatement(sql);
         res = req.executeQuery();
@@ -40,7 +38,7 @@ public class ListesAffaires extends javax.swing.JPanel {
                     k=res.getRow();
                     res.beforeFirst();
                 }
-               Object[][] t=new Object[k][6];
+               Object[][] t=new Object[k][10];
         
         while(res.next())
         {
@@ -50,19 +48,73 @@ public class ListesAffaires extends javax.swing.JPanel {
                    t[i][3]=res.getString(4);
                    t[i][4]=res.getString(5);
                    t[i][5]=res.getString(6);
+                   t[i][6]=res.getString(7);
+                   t[i][7]=res.getString(8);
+                   t[i][8]=res.getString(9);
+                   t[i][9]=res.getString(10);
                    i++;
                 }
                
                 res.close();
-         final String columnNames[] = {"ID Affaire","Active?","Qualité","Nature de l'affaire", "Objet", "Date"};
+         final String columnNames[] = {"Nom","Prénom","Date de naissance","Ville", "Adresse", "Numéro de téléphone", "Email", "Type De Document", "Numero De Carte", "Raison Social"};
          jTable1.setModel(new DefaultTableModel(t,columnNames));
          ListSelectionModel listMod =  jTable1.getSelectionModel();
          listMod.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
          listMod.addListSelectionListener(jTable1);
         
     }   catch (SQLException ex) {
-            Logger.getLogger(ListesAffaires.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListeClients.class.getName()).log(Level.SEVERE, null, ex);
         }
+}
+
+public void AffichagePartieAdv() {
+        conn = Avocado.DBConn();
+    String sql = "SELECT `Nom_Cli`, `Prenom_Cli`, `DateNaiss_Cli`, `Ville`, `Add_Cli`, `Tel_Cli`, `Email_Cli`, `Type_CarteID`, `Num_CarteId`, `RaiSoc_Cli` FROM `client` WHERE Type_Cli = 'Partie Adverse'";
+    try{
+        req = conn.prepareStatement(sql);
+        res = req.executeQuery();
+        int k= 0;
+        int i = 0;
+        if(res.next()){
+                    res.last();
+                    k=res.getRow();
+                    res.beforeFirst();
+                }
+               Object[][] t=new Object[k][10];
+        
+        while(res.next())
+        {
+                   t[i][0]=res.getString(1);
+                   t[i][1]=res.getString(2);
+                   t[i][2]=res.getString(3);
+                   t[i][3]=res.getString(4);
+                   t[i][4]=res.getString(5);
+                   t[i][5]=res.getString(6);
+                   t[i][6]=res.getString(7);
+                   t[i][7]=res.getString(8);
+                   t[i][8]=res.getString(9);
+                   t[i][9]=res.getString(10);
+                   i++;
+                }
+               
+                res.close();
+         final String columnNames[] = {"Nom","Prénom","Date de naissance","Ville", "Adresse", "Numéro de téléphone", "Email", "Type De Document", "Numero De Carte", "Raison Social"};
+         jTable1.setModel(new DefaultTableModel(t,columnNames));
+         ListSelectionModel listMod =  jTable1.getSelectionModel();
+         listMod.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+         listMod.addListSelectionListener(jTable1);
+        
+    }   catch (SQLException ex) {
+            Logger.getLogger(ListeClients.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
+    /**
+     * Creates new form ListesAffaires
+     */
+    public ListeClients() {
+        initComponents();
+        if(ClientMenu.getbtnC() == 1) AffichageClients();
+        else if(ClientMenu.getbtnC() == 2) AffichagePartieAdv();
     }
 
     /**

@@ -17,6 +17,12 @@ public class ClientMenu extends javax.swing.JPanel {
     public ClientMenu() {
         initComponents();
     }
+    
+    static int btnC = 0;
+    
+    public static int getbtnC(){
+        return btnC;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -179,12 +185,15 @@ public class ClientMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
-        ListesAffaires t = new ListesAffaires();
+        btnC = 1;
+        ListeClients t = new ListeClients();
         MainFrame.AffichageTab(t);     // TODO add your handling code here:
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
-        // TODO add your handling code here:
+        btnC = 2;
+        ListeClients t = new ListeClients();
+        MainFrame.AffichageTab(t);       // TODO add your handling code here:
     }//GEN-LAST:event_jPanel7MouseClicked
 
 

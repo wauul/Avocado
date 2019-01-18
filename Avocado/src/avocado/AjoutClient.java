@@ -240,7 +240,7 @@ public class AjoutClient extends javax.swing.JPanel {
             }
         });
 
-        TypeClient.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Client", "Patie Adverse" }));
+        TypeClient.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Client", "Partie Adverse" }));
         TypeClient.setSelectedIndex(-1);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
