@@ -273,9 +273,10 @@ public class ConfrereMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_jPanel8MouseClicked
 
     private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
+        btnC = 4;
         ListeConfreres t = new ListeConfreres();
         MainFrame.AffichageTab(t); 
-        btnC = 4;        // TODO add your handling code here:
+               // TODO add your handling code here:
     }//GEN-LAST:event_jPanel9MouseClicked
 
 

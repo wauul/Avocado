@@ -19,6 +19,10 @@ public class ClientMenu extends javax.swing.JPanel {
     }
     
     static int btnC = 0;
+
+    public static void setBtnC(int btnC) {
+        ClientMenu.btnC = btnC;
+    }
     
     public static int getbtnC(){
         return btnC;

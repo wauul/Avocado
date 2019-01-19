@@ -8,6 +8,7 @@ package avocado;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -265,11 +266,20 @@ public class AjoutConfrere extends javax.swing.JPanel {
             req.setString(7, Mail.getText());
             req.setString(8, Com.getText());
             req.setString(1, (String) TypeClient.getSelectedItem());
-            req.executeUpdate(); }
+            req.executeUpdate();        
+        }
         catch (SQLException ex) {
             Logger.getLogger(AjoutAffaire.class.getName()).log(Level.SEVERE, null, ex);
         }
- 
+        JOptionPane.showMessageDialog(null, "Confrère Ajouté Avec Succés");
+        Nom.setText("");
+        Prenom.setText("");
+        Adresse.setText("");
+        Mail.setText("");
+        Com.setText("");
+        Tel.setText("");
+        Ville.setText("");
+        TypeClient.setSelectedIndex(-1);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -285,7 +295,7 @@ public class AjoutConfrere extends javax.swing.JPanel {
 
     private void TelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TelKeyTyped
         char typed = evt.getKeyChar();
-        if(!Character.isDigit(typed)) evt.consume();        // TODO add your handling code here:
+        if(!Character.isDigit(typed)) evt.consume();        
     }//GEN-LAST:event_TelKeyTyped
 
 

@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -62,10 +63,10 @@ public class AjoutClient extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         NumCarte = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        TypeCarte = new javax.swing.JComboBox<>();
+        TypeCarte = new javax.swing.JComboBox();
         jLabel13 = new javax.swing.JLabel();
         RaisSocial = new javax.swing.JTextField();
-        TypeClient = new javax.swing.JComboBox<>();
+        TypeClient = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
 
         jButton5.setText("Enregistrer");
@@ -108,15 +109,15 @@ public class AjoutClient extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Ville, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addComponent(jLabel14)
                         .addGap(10, 10, 10)
                         .addComponent(DateNaiss, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Nom, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                        .addGap(41, 41, 41)
                         .addComponent(jLabel2)
-                        .addGap(26, 26, 26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Prenom, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Adresse))
                 .addGap(19, 19, 19))
@@ -126,12 +127,11 @@ public class AjoutClient extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Prenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2))
+                    .addComponent(Prenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Nom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -146,7 +146,7 @@ public class AjoutClient extends javax.swing.JPanel {
                             .addComponent(jLabel14)
                             .addComponent(Ville, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(DateNaiss, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(29, 29, 29))
+                .addGap(20, 20, 20))
         );
 
         jButton6.setText("Vider tous les champs");
@@ -177,7 +177,7 @@ public class AjoutClient extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
                     .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Mail, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                     .addComponent(Tel))
@@ -200,10 +200,16 @@ public class AjoutClient extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Numero de carte");
 
+        NumCarte.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NumCarteKeyTyped(evt);
+            }
+        });
+
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setText("Type de carte");
 
-        TypeCarte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Carte D'identité National", "Passeport", "Permis de conduire" }));
+        TypeCarte.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Carte D'identité National", "Passeport", "Permis de conduire" }));
         TypeCarte.setSelectedIndex(-1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -215,16 +221,16 @@ public class AjoutClient extends javax.swing.JPanel {
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TypeCarte, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel11)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(NumCarte, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(TypeCarte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,7 +238,7 @@ public class AjoutClient extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11)
                         .addComponent(NumCarte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -244,7 +250,7 @@ public class AjoutClient extends javax.swing.JPanel {
             }
         });
 
-        TypeClient.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Client", "Partie Adverse" }));
+        TypeClient.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Client", "Partie Adverse" }));
         TypeClient.setSelectedIndex(-1);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -266,12 +272,13 @@ public class AjoutClient extends javax.swing.JPanel {
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(RaisSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(51, 51, 51)
                         .addComponent(jLabel9)
-                        .addGap(26, 26, 26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(TypeClient, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)))
                 .addContainerGap())
@@ -279,19 +286,19 @@ public class AjoutClient extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(RaisSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TypeClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -300,46 +307,19 @@ public class AjoutClient extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        Connection conn = null;
-        PreparedStatement req = null;
-        ResultSet res = null;
-           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-           String s= dateFormat.format(DateNaiss.getDate());
-
-        conn = Avocado.DBConn();
-        String sql = "INSERT INTO `client`(`Nom_Cli`, `Prenom_Cli`, `DateNaiss_Cli`, `Ville`, `Add_Cli`, `Tel_Cli`, `Email_Cli`, `Type_CarteID`, `Num_CarteId`, `Type_Cli`, `RaiSoc_Cli`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-        try{
-            req = conn.prepareStatement(sql);
-            req.setString(1, Nom.getText());
-            req.setString(2, Prenom.getText());
-            req.setString(3, s);
-            req.setString(4, Ville.getText());
-            req.setString(5, Adresse.getText());
-            req.setString(6, Tel.getText());
-            req.setString(7, Mail.getText());
-            req.setString(8, TypeCarte.getSelectedItem().toString());
-            req.setString(9, NumCarte.getText());
-            req.setString(10, TypeClient.getSelectedItem().toString());
-            req.setString(11, RaisSocial.getText());
-            req.executeUpdate(); }
-        catch (SQLException ex) {
-            Logger.getLogger(AjoutAffaire.class.getName()).log(Level.SEVERE, null, ex);
-        }   
-        
-        String sql1 = "SELECT `Id_Cli` FROM `client` WHERE `Num_CarteId` = ? AND `Nom_Cli` = ?";
-            try{
-                req = conn.prepareStatement(sql1);
-                req.setString(1, NumCarte.getText());
-                req.setString(2, Nom.getText());
-                res = req.executeQuery();
-                if(res.next()) {
-                    if(AjoutAffaire.getType_c() == 1) AjoutAffaire.setId_Cli(res.getInt("Id_Cli"));
-                    else if(AjoutAffaire.getType_c() == 2) AjoutAffaire.setId_Adv(res.getInt("Id_Cli")); 
-                }
-            } catch (SQLException ex) {
-            Logger.getLogger(AjoutClient.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        ajoutC();
+        JOptionPane.showMessageDialog(null, "Client Ajouté Avec Succés");
+        Nom.setText("");
+        Prenom.setText("");
+        Adresse.setText("");
+        DateNaiss.setDate(null);
+        Mail.setText("");
+        NumCarte.setText("");
+        RaisSocial.setText("");
+        Tel.setText("");
+        Ville.setText("");
+        TypeCarte.setSelectedIndex(-1);
+        TypeClient.setSelectedIndex(-1);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -365,21 +345,79 @@ public class AjoutClient extends javax.swing.JPanel {
         if(!Character.isDigit(typed)) evt.consume();
     }//GEN-LAST:event_TelKeyTyped
 
+    private void NumCarteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumCarteKeyTyped
+        char typed = evt.getKeyChar();
+        if(!Character.isDigit(typed)) evt.consume();          // TODO add your handling code here:
+    }//GEN-LAST:event_NumCarteKeyTyped
+
+    
+    public static void getIds(){
+        Connection conn = Avocado.DBConn();
+        PreparedStatement req = null;
+        ResultSet res = null;
+        if(AjoutAffaire.getType_c() == 1 || AjoutAffaire.getType_c() == 2) {       
+        String sql1 = "SELECT `Id_Cli` FROM `client` WHERE `Num_CarteId` = ? AND `Nom_Cli` = ?";
+            try{
+                req = conn.prepareStatement(sql1);
+                req.setString(1, NumCarte.getText());
+                req.setString(2, Nom.getText());
+                res = req.executeQuery();
+                if(res.next()) {
+                    if(AjoutAffaire.getType_c() == 1) AjoutAffaire.setId_Cli(res.getInt("Id_Cli"));
+                    else if(AjoutAffaire.getType_c() == 2) AjoutAffaire.setId_Adv(res.getInt("Id_Cli")); 
+                }
+            } catch (SQLException ex) {
+            Logger.getLogger(AjoutClient.class.getName()).log(Level.SEVERE, null, ex);
+        }}
+    }
+    
+    public static void setVisibility(){
+        jButton6.setVisible(false);
+        jButton5.setVisible(false);
+    }
+    
+    
+    public static void ajoutC(){
+                Connection conn = null;
+        PreparedStatement req = null;
+           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+           String s= dateFormat.format(DateNaiss.getDate());
+
+        conn = Avocado.DBConn();
+        String sql = "INSERT INTO `client`(`Nom_Cli`, `Prenom_Cli`, `DateNaiss_Cli`, `Ville`, `Add_Cli`, `Tel_Cli`, `Email_Cli`, `Type_CarteID`, `Num_CarteId`, `Type_Cli`, `RaiSoc_Cli`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        try{
+            req = conn.prepareStatement(sql);
+            req.setString(1, Nom.getText());
+            req.setString(2, Prenom.getText());
+            req.setString(3, s);
+            req.setString(4, Ville.getText());
+            req.setString(5, Adresse.getText());
+            req.setString(6, Tel.getText());
+            req.setString(7, Mail.getText());
+            req.setString(8, TypeCarte.getSelectedItem().toString());
+            req.setString(9, NumCarte.getText());
+            req.setString(10, TypeClient.getSelectedItem().toString());
+            req.setString(11, RaisSocial.getText());
+            req.executeUpdate(); }
+        catch (SQLException ex) {
+            Logger.getLogger(AjoutAffaire.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Adresse;
-    private com.toedter.calendar.JDateChooser DateNaiss;
-    private javax.swing.JTextField Mail;
-    private javax.swing.JTextField Nom;
-    private javax.swing.JTextField NumCarte;
-    private javax.swing.JTextField Prenom;
-    private javax.swing.JTextField RaisSocial;
-    private javax.swing.JTextField Tel;
-    private javax.swing.JComboBox<String> TypeCarte;
-    private static javax.swing.JComboBox<String> TypeClient;
-    private javax.swing.JTextField Ville;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private static javax.swing.JTextField Adresse;
+    private static com.toedter.calendar.JDateChooser DateNaiss;
+    private static javax.swing.JTextField Mail;
+    private static javax.swing.JTextField Nom;
+    private static javax.swing.JTextField NumCarte;
+    private static javax.swing.JTextField Prenom;
+    private static javax.swing.JTextField RaisSocial;
+    private static javax.swing.JTextField Tel;
+    private static javax.swing.JComboBox TypeCarte;
+    private static javax.swing.JComboBox TypeClient;
+    private static javax.swing.JTextField Ville;
+    private static javax.swing.JButton jButton5;
+    private static javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;

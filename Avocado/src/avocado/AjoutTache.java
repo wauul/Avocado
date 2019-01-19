@@ -7,6 +7,7 @@ package avocado;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -129,6 +130,10 @@ public class AjoutTache extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(AjoutTache.class.getName()).log(Level.SEVERE, null, ex);
         } 
+        JOptionPane.showMessageDialog(null, "Tâche Ajouté Avec Succés");
+        Date.setDate(null);
+        Titre.setText("");
+        Com.setText("");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

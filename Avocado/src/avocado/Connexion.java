@@ -97,7 +97,7 @@ public class Connexion extends javax.swing.JFrame {
         if(res.next()){
             if(res.getString("Type_Compte") == "Administrateur") Avocado.setaccType(1);
             else if (res.getString("Type_Compte") == "Secrétaire") Avocado.setaccType(3);
-            else Avocado.setaccType(2);
+            else Avocado.setaccType(2);  
             
             if(res.getInt("Id_Avoc") == 0)
             {
@@ -115,9 +115,9 @@ public class Connexion extends javax.swing.JFrame {
             System.out.print(Avocado.getaccID());
             }
             else Avocado.setaccID(res.getInt("Id_Avoc"));
-            JOptionPane.showMessageDialog(null, "Connecter Avec Succées");
-            new MainFrame().setVisible(true);
-            this.dispose();
+        JOptionPane.showMessageDialog(null, "Connecter Avec Succées");
+        new MainFrame().setVisible(true);
+        this.dispose();
         }
         else{
             JOptionPane.showMessageDialog(null, "Nom d'utilisateur ou Mot de passe Incorrecte", "Accées Refusé", JOptionPane.ERROR_MESSAGE);
@@ -125,6 +125,8 @@ public class Connexion extends javax.swing.JFrame {
     }   catch (SQLException ex) {
             Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null, ex);
         }
+    
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void passTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passTextActionPerformed

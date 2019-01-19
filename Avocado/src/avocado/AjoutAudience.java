@@ -8,6 +8,7 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -305,7 +306,14 @@ public class AjoutAudience extends javax.swing.JPanel {
         catch (SQLException ex) {
             Logger.getLogger(AjoutAudience.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        JOptionPane.showMessageDialog(null, "Audience Ajouté Avec Succés");
+        Com.setText("");
+        Confrere.setText("");
+        Membre.setText("");
+        Date.setDate(null);
+        Statut.setSelectedIndex(-1);
+        Juridiction.setText("");
+        Affaire.setText("");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

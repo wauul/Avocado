@@ -5,6 +5,7 @@
  */
 package avocado;
 
+import java.awt.Frame;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,8 +28,6 @@ public class AjoutAffaire extends javax.swing.JPanel {
         initComponents();
     }
     
-    static int Id_Cli;
-    static int Id_Adv;
     static int type_c;
 
     public static int getType_c() {
@@ -35,11 +35,11 @@ public class AjoutAffaire extends javax.swing.JPanel {
     }
 
     public static void setId_Cli(int Id_Cli) {
-        AjoutAffaire.Id_Cli = Id_Cli;
+        Client_ID.setText(Integer.toString(Id_Cli));
     }
 
     public static void setId_Adv(int Id_Adv) {
-        AjoutAffaire.Id_Adv = Id_Adv;
+        Contre_ID.setText(Integer.toString(Id_Adv));
     }
     
     
@@ -386,8 +386,18 @@ public class AjoutAffaire extends javax.swing.JPanel {
     catch (SQLException ex) {
             Logger.getLogger(AjoutAffaire.class.getName()).log(Level.SEVERE, null, ex);
         }    
-    
-    
+    JOptionPane.showMessageDialog(null, "Affaire Ajouté Avec Succés");
+        Avocat_Contre_ID.setText("");
+        Client_ID.setText("");
+        Commentaire.setText("");
+        Contre_ID.setText("");
+        Details.setText("");
+        Honnoraires.setText("");
+        Juridiction_ID.setText("");
+        Nature.setSelectedIndex(-1);
+        Objet.setText("");
+        Qualite.setSelectedIndex(-1);
+        jDate.setDate(null);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -410,11 +420,12 @@ public class AjoutAffaire extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         type_c =1 ;   
-        
+        new SelectClients().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        type_c = 2 ;       // TODO add your handling code here:
+        type_c = 2 ;
+        new SelectClients().setVisible(true); 
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

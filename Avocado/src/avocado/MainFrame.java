@@ -37,8 +37,7 @@ public final class MainFrame extends javax.swing.JFrame {
     }
         
     public static void AffichageTab(javax.swing.JPanel x){
-        PanelAffichage.removeAll();
-        
+        PanelAffichage.removeAll();        
         PanelAffichage.setLayout(new java.awt.BorderLayout());    
         PanelAffichage.add(x);
         PanelAffichage.revalidate(); 

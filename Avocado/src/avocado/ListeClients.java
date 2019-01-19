@@ -27,7 +27,7 @@ public class ListeClients extends javax.swing.JPanel {
     
 public void AffichageClients(){
         conn = Avocado.DBConn();
-    String sql = "SELECT `Nom_Cli`, `Prenom_Cli`, `DateNaiss_Cli`, `Ville`, `Add_Cli`, `Tel_Cli`, `Email_Cli`, `Type_CarteID`, `Num_CarteId`, `RaiSoc_Cli` FROM `client` WHERE Type_Cli = 'Client'";
+    String sql = "SELECT `Id_Cli`, `Nom_Cli`, `Prenom_Cli`, `DateNaiss_Cli`, `Ville`, `Add_Cli`, `Tel_Cli`, `Email_Cli`, `Type_CarteID`, `Num_CarteId`, `RaiSoc_Cli` FROM `client` WHERE Type_Cli = 'Client'";
     try{
         req = conn.prepareStatement(sql);
         res = req.executeQuery();
@@ -38,7 +38,7 @@ public void AffichageClients(){
                     k=res.getRow();
                     res.beforeFirst();
                 }
-               Object[][] t=new Object[k][10];
+               Object[][] t=new Object[k][11];
         
         while(res.next())
         {
@@ -52,11 +52,12 @@ public void AffichageClients(){
                    t[i][7]=res.getString(8);
                    t[i][8]=res.getString(9);
                    t[i][9]=res.getString(10);
+                   t[i][10]=res.getString(11);
                    i++;
                 }
                
                 res.close();
-         final String columnNames[] = {"Nom","Prénom","Date de naissance","Ville", "Adresse", "Numéro de téléphone", "Email", "Type De Document", "Numero De Carte", "Raison Social"};
+         final String columnNames[] = {"ID","Nom","Prénom","Date de naissance","Ville", "Adresse", "Numéro de téléphone", "Email", "Type De Document", "Numero De Carte", "Raison Social"};
          jTable1.setModel(new DefaultTableModel(t,columnNames));
          ListSelectionModel listMod =  jTable1.getSelectionModel();
          listMod.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -69,7 +70,7 @@ public void AffichageClients(){
 
 public void AffichagePartieAdv() {
         conn = Avocado.DBConn();
-    String sql = "SELECT `Nom_Cli`, `Prenom_Cli`, `DateNaiss_Cli`, `Ville`, `Add_Cli`, `Tel_Cli`, `Email_Cli`, `Type_CarteID`, `Num_CarteId`, `RaiSoc_Cli` FROM `client` WHERE Type_Cli = 'Partie Adverse'";
+    String sql = "SELECT `Id_Cli`, `Nom_Cli`, `Prenom_Cli`, `DateNaiss_Cli`, `Ville`, `Add_Cli`, `Tel_Cli`, `Email_Cli`, `Type_CarteID`, `Num_CarteId`, `RaiSoc_Cli` FROM `client` WHERE Type_Cli = 'Partie Adverse'";
     try{
         req = conn.prepareStatement(sql);
         res = req.executeQuery();
@@ -80,7 +81,7 @@ public void AffichagePartieAdv() {
                     k=res.getRow();
                     res.beforeFirst();
                 }
-               Object[][] t=new Object[k][10];
+               Object[][] t=new Object[k][11];
         
         while(res.next())
         {
@@ -94,11 +95,12 @@ public void AffichagePartieAdv() {
                    t[i][7]=res.getString(8);
                    t[i][8]=res.getString(9);
                    t[i][9]=res.getString(10);
+                   t[i][10]=res.getString(11);
                    i++;
                 }
                
                 res.close();
-         final String columnNames[] = {"Nom","Prénom","Date de naissance","Ville", "Adresse", "Numéro de téléphone", "Email", "Type De Document", "Numero De Carte", "Raison Social"};
+         final String columnNames[] = {"ID","Nom","Prénom","Date de naissance","Ville", "Adresse", "Numéro de téléphone", "Email", "Type De Document", "Numero De Carte", "Raison Social"};
          jTable1.setModel(new DefaultTableModel(t,columnNames));
          ListSelectionModel listMod =  jTable1.getSelectionModel();
          listMod.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -158,9 +160,14 @@ public void AffichagePartieAdv() {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    public static void GetIds(){
+        if(AjoutAffaire.getType_c() == 1) AjoutAffaire.setId_Cli(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString()));
+        else if(AjoutAffaire.getType_c() == 2) AjoutAffaire.setId_Adv(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString()));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private static javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
