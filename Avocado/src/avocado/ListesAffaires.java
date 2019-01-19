@@ -29,7 +29,7 @@ public class ListesAffaires extends javax.swing.JPanel {
     public ListesAffaires() {
         initComponents();
     conn = Avocado.DBConn();
-    String sql = "SELECT `Titre_Aff`, `Qualité_Plai`, `Nature_Aff`, `Objet`, `Date_Ent_Aff`, `Comm_Aff` FROM `affaires`";
+    String sql = "SELECT Id_Aff ,`Titre_Aff`, `Qualité_Plai`, `Nature_Aff`, `Objet`, `Date_Ent_Aff`, `Comm_Aff` FROM `affaires`";
     try{
         req = conn.prepareStatement(sql);
         res = req.executeQuery();
@@ -40,7 +40,7 @@ public class ListesAffaires extends javax.swing.JPanel {
                     k=res.getRow();
                     res.beforeFirst();
                 }
-               Object[][] t=new Object[k][6];
+               Object[][] t=new Object[k][7];
         
         while(res.next())
         {
@@ -50,11 +50,12 @@ public class ListesAffaires extends javax.swing.JPanel {
                    t[i][3]=res.getString(4);
                    t[i][4]=res.getString(5);
                    t[i][5]=res.getString(6);
+                   t[i][6]=res.getString(7);
                    i++;
                 }
                
                 res.close();
-         final String columnNames[] = {"ID Affaire","Active?","Qualité","Nature de l'affaire", "Objet", "Date"};
+         final String columnNames[] = {"ID Affaire","Titre","Qualité","Nature de l'affaire", "Objet", "Date","Commentaires"};
          jTable1.setModel(new DefaultTableModel(t,columnNames));
          ListSelectionModel listMod =  jTable1.getSelectionModel();
          listMod.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -64,7 +65,9 @@ public class ListesAffaires extends javax.swing.JPanel {
             Logger.getLogger(ListesAffaires.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    public static int GetIds(){
+        return Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+            }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -109,6 +112,6 @@ public class ListesAffaires extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private static javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

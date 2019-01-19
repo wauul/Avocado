@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -22,6 +23,28 @@ public class AjoutAudience extends javax.swing.JPanel {
     public AjoutAudience() {
         initComponents();
     }
+    
+    public static void setAff(int x){
+        Affaire.setText(Integer.toString(x));
+    }
+    
+    
+    static int Aud = 0;
+
+    public static int getAud() {
+        return Aud;
+    }
+
+    public static void setAud(int Aud) {
+        AjoutAudience.Aud = Aud;
+    }
+
+    public static void setConfrere(int Confrere) {
+        AjoutAudience.Confrere.setText(Integer.toString( Confrere));
+    }
+
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -123,7 +146,7 @@ public class AjoutAudience extends javax.swing.JPanel {
                         .addComponent(Juridiction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Statut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -268,10 +291,10 @@ public class AjoutAudience extends javax.swing.JPanel {
                     .addComponent(Affaire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addContainerGap(500, Short.MAX_VALUE))
+                .addContainerGap(441, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addContainerGap(74, Short.MAX_VALUE)
+                    .addContainerGap(45, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(20, 20, 20)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -286,26 +309,7 @@ public class AjoutAudience extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        Connection conn = null;
-        PreparedStatement req = null;
-        ResultSet res = null;
-           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-           String s= dateFormat.format(Date.getDate());
-        conn = Avocado.DBConn();
-        String sql = "INSERT INTO `audiences`(`Id_Aff`, `Id_Juri`, `Date_Aud`, `Statut_Aud`, `Id_Resp`, `Id_Sub`, `Comm_Aud`) VALUES (?,?,?,?,?,?,?)";
-        try{
-            req = conn.prepareStatement(sql);
-            req.setString(1, Affaire.getText());
-            req.setString(2, Juridiction.getText());
-            req.setString(3, s);
-            req.setString(4, (String) Statut.getSelectedItem());
-            req.setString(5, Membre.getText());
-            req.setString(6, Confrere.getText());
-            req.setString(7, Com.getText());
-            req.executeUpdate(); } 
-        catch (SQLException ex) {
-            Logger.getLogger(AjoutAudience.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Affichage();
         JOptionPane.showMessageDialog(null, "Audience Ajouté Avec Succés");
         Com.setText("");
         Confrere.setText("");
@@ -327,7 +331,7 @@ public class AjoutAudience extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        new SelectAffaire().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -335,13 +339,37 @@ public class AjoutAudience extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+       Aud = 1;
+        new SelectAvocat().setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    
+    public void Affichage(){
+                Connection conn = null;
+        PreparedStatement req = null;
+        ResultSet res = null;
+           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+           String s= dateFormat.format(Date.getDate());
+        conn = Avocado.DBConn();
+        String sql = "INSERT INTO `audiences`(`Id_Aff`, `Id_Juri`, `Date_Aud`, `Statut_Aud`, `Id_Resp`, `Id_Sub`, `Comm_Aud`) VALUES (?,?,?,?,?,?,?)";
+        try{
+            req = conn.prepareStatement(sql);
+            req.setString(1, Affaire.getText());
+            req.setString(2, Juridiction.getText());
+            req.setString(3, s);
+            req.setString(4, (String) Statut.getSelectedItem());
+            req.setString(5, Membre.getText());
+            req.setString(6, Confrere.getText());
+            req.setString(7, Com.getText());
+            req.executeUpdate(); } 
+        catch (SQLException ex) {
+            Logger.getLogger(AjoutAudience.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JTextField Affaire;

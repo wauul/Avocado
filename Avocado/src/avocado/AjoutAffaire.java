@@ -120,6 +120,11 @@ public class AjoutAffaire extends javax.swing.JPanel {
         Avocat_Contre_ID.setEditable(false);
 
         jButton3.setText("..");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Avocat Contre");
@@ -432,6 +437,10 @@ public class AjoutAffaire extends javax.swing.JPanel {
         type_c = 2 ;
         new SelectClients().setVisible(true); 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    new SelectAvocat().setVisible(true);       // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

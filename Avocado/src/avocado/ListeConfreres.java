@@ -24,14 +24,14 @@ public class ListeConfreres extends javax.swing.JPanel {
     PreparedStatement req = null;
     ResultSet res = null;
     
-public static void GetIds(){
-        AjoutAffaire.setId_AvcAdv(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString()));
+public static int GetIds(){
+        return Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
             }
     
     
 public void AffichageConfrere(){
     conn = Avocado.DBConn();
-    String sql = "SELECT  `Nom_Conf`, `Prenom_Conf`, `Ville`, `Add_Conf`, `Tel_Conf`, `Email_Conf`, `Type_Conf`, `Description` FROM `confreres`";
+    String sql = "SELECT  Id_Conf , `Nom_Conf`, `Prenom_Conf`, `Ville`, `Add_Conf`, `Tel_Conf`, `Email_Conf`, `Type_Conf`, `Description` FROM `confreres`";
     try{
         req = conn.prepareStatement(sql);
         res = req.executeQuery();
@@ -42,7 +42,7 @@ public void AffichageConfrere(){
                     k=res.getRow();
                     res.beforeFirst();
                 }
-               Object[][] t=new Object[k][8];
+               Object[][] t=new Object[k][9];
         
         while(res.next())
         {
@@ -54,11 +54,12 @@ public void AffichageConfrere(){
                    t[i][5]=res.getString(6);
                    t[i][6]=res.getString(7);
                    t[i][7]=res.getString(8);
+                   t[i][8]=res.getString(9);
                    i++;
                 }
                
                 res.close();
-         final String columnNames[] = {"Nom","Prénom","Ville", "Adresse", "Numéro de téléphone", "Email", "Poste", "Description"};
+         final String columnNames[] = {"ID","Nom","Prénom","Ville", "Adresse", "Numéro de téléphone", "Email", "Poste", "Description"};
          jTable1.setModel(new DefaultTableModel(t,columnNames));
          ListSelectionModel listMod =  jTable1.getSelectionModel();
          listMod.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -108,11 +109,12 @@ public void Affichage(int b) {
                    t[i][4]=res.getString(5);
                    t[i][5]=res.getString(6);
                    t[i][6]=res.getString(7);
+                   
                    i++;
                 }
                
                 res.close();
-         final String columnNames[] = {"Nom","Prénom","Ville", "Adresse", "Numéro de téléphone", "Email", "Description"};
+         final String columnNames[] = {"ID","Nom","Prénom","Ville", "Adresse", "Numéro de téléphone", "Email", "Description"};
          jTable1.setModel(new DefaultTableModel(t,columnNames));
          ListSelectionModel listMod =  jTable1.getSelectionModel();
          listMod.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

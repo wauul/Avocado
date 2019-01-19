@@ -24,6 +24,10 @@ public class ConfrereMenu extends javax.swing.JPanel {
         return btnC;
     }
     
+    public static void setbnC(int x){
+        btnC = x;
+    }
+    
     
 
     /**

@@ -150,13 +150,14 @@ public class SelectClients extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton4MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    if(jToggleButton4.isSelected()) ListeClients.GetIds(); 
-    else if(jToggleButton3.isSelected()){AjoutClient.ajoutC();  AjoutClient.getIds();}
+
     this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    this.dispose();  // TODO add your handling code here:
+    if(jToggleButton4.isSelected()) ListeClients.GetIds();
+    else if(jToggleButton3.isSelected()){AjoutClient.ajoutC();  AjoutClient.getIds();}
+        this.dispose();  // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
