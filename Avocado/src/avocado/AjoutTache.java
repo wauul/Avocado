@@ -5,6 +5,7 @@
  */
 package avocado;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -118,15 +119,17 @@ public class AjoutTache extends javax.swing.JPanel {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         Connection conn = null;
         PreparedStatement req = null;
-        ResultSet res = null;
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");            
+            String s= dateFormat.format(Date.getDate());
 
         conn = Avocado.DBConn();
         String sql = "INSERT INTO `taches`(`Titre_Task`, `Date_Task`, `Task`) VALUES (?,?,?)";
         try {
             req = conn.prepareStatement(sql);
             req.setString(1, Titre.getText()); 
-            req.setDate(2, (Date) Date.getDate());      
+            req.setString(2, s);      
             req.setString(3, Com.getText());
+            req.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(AjoutTache.class.getName()).log(Level.SEVERE, null, ex);
         } 

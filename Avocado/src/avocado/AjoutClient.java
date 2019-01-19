@@ -380,7 +380,7 @@ public class AjoutClient extends javax.swing.JPanel {
     public static void ajoutC(){
                 Connection conn = null;
         PreparedStatement req = null;
-           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
            String s= dateFormat.format(DateNaiss.getDate());
 
         conn = Avocado.DBConn();

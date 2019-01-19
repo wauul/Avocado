@@ -6,7 +6,9 @@
 package avocado;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -285,7 +287,14 @@ public class Paiements extends javax.swing.JPanel {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         Connection conn = null;
         PreparedStatement req = null;
-        ResultSet res = null;
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String s;
+            if(Date.getDate() != null)
+            s= dateFormat.format(Date.getDate());
+            else{
+                Calendar cal = Calendar.getInstance();
+                Date date=(Date) cal.getTime();
+                s = dateFormat.format(date);}
 
         conn = Avocado.DBConn();
         String sql = "INSERT INTO `honoraires`(`Id_Aff`, `Type_Paiement`, `Date_Paiement`, `Heure_Paie`, `Total_Paiement`, `Reste_Paiement`, `Montant_Paiement`, `Comm_Hon`) VALUES (?,?,?,?,?,?,?,?)";
@@ -293,12 +302,13 @@ public class Paiements extends javax.swing.JPanel {
             req = conn.prepareStatement(sql);
             req.setString(1, Affaire.getText());
             req.setString(2, (String) Type.getSelectedItem());
-            req.setDate(3, (Date) Date.getDate());
+            req.setString(3, s);
             req.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
             req.setDouble(5, Double.parseDouble(Total.getText()));
             req.setDouble(6, Double.parseDouble(Reste.getText()) - Double.parseDouble(Montant.getText()));
             req.setDouble(7, Double.parseDouble(Montant.getText()));
             req.setString(8, Com.getText());
+            req.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Paiements.class.getName()).log(Level.SEVERE, null, ex);
         }

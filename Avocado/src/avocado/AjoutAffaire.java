@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -366,7 +367,8 @@ public class AjoutAffaire extends javax.swing.JPanel {
     Connection conn = null;
     PreparedStatement req = null;
     
-  
+           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+           String s= dateFormat.format(jDate.getDate());
     conn = Avocado.DBConn();
     String sql = "INSERT INTO `affaires`(`Id_Client`, `Id_Contre`, `Id_AvocatContre`, `Etat_Aff`, `Qualité_Plai`, `Id_Juri`, `Nature_Aff`, `Objet`, `Date_Ent_Aff`, `Honnoraires_Aff`, `Comm_Aff`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
     try{
@@ -379,7 +381,7 @@ public class AjoutAffaire extends javax.swing.JPanel {
         req.setString(6, Juridiction_ID.getText());
         req.setString(7, Nature.getSelectedItem().toString());
         req.setString(8, Objet.getText());
-        req.setDate(9, (Date) jDate.getDate());
+        req.setString(9, s);
         req.setDouble(10, Double.parseDouble(Honnoraires.getText()));
         req.setString(11, Details.getText());
         req.executeUpdate(); } 

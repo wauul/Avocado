@@ -17,6 +17,11 @@ public class AudienceMenu extends javax.swing.JPanel {
     public AudienceMenu() {
         initComponents();
     }
+    private static int btnC; 
+    
+    public static int getbtnC(){
+        return btnC;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,7 +83,7 @@ public class AudienceMenu extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(104, 104, 104))
+                .addGap(101, 101, 101))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,7 +102,7 @@ public class AudienceMenu extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Liste Des Affaires");
+        jLabel3.setText("Liste Des Audiences");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -106,7 +111,7 @@ public class AudienceMenu extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(101, 101, 101))
+                .addGap(95, 95, 95))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,12 +184,15 @@ public class AudienceMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
-        ListesAffaires t = new ListesAffaires();
+        btnC = 1;
+        ListeAudiences t = new ListeAudiences();
         MainFrame.AffichageTab(t);     // TODO add your handling code here:
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void jPanel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseClicked
-        // TODO add your handling code here:
+        btnC = 2;
+        ListeAudiences t = new ListeAudiences();
+        MainFrame.AffichageTab(t);        // TODO add your handling code here:
     }//GEN-LAST:event_jPanel8MouseClicked
 
 
@@ -194,12 +202,10 @@ public class AudienceMenu extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     // End of variables declaration//GEN-END:variables
 }

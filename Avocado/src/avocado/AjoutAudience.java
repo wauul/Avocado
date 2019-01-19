@@ -263,12 +263,12 @@ public class AjoutAudience extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Affaire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addContainerGap(494, Short.MAX_VALUE))
+                .addContainerGap(500, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap(74, Short.MAX_VALUE)
@@ -289,7 +289,7 @@ public class AjoutAudience extends javax.swing.JPanel {
         Connection conn = null;
         PreparedStatement req = null;
         ResultSet res = null;
-                   SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
            String s= dateFormat.format(Date.getDate());
         conn = Avocado.DBConn();
         String sql = "INSERT INTO `audiences`(`Id_Aff`, `Id_Juri`, `Date_Aud`, `Statut_Aud`, `Id_Resp`, `Id_Sub`, `Comm_Aud`) VALUES (?,?,?,?,?,?,?)";

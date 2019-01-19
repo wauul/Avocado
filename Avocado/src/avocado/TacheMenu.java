@@ -146,7 +146,7 @@ public class TacheMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
-        ListesAffaires t = new ListesAffaires();
+        ListeTaches t = new ListeTaches();
         MainFrame.AffichageTab(t);     // TODO add your handling code here:
     }//GEN-LAST:event_jPanel6MouseClicked
 
