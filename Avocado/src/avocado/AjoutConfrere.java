@@ -22,6 +22,30 @@ public class AjoutConfrere extends javax.swing.JPanel {
     public AjoutConfrere() {
         initComponents();
     }
+    
+public static void AjoutC(){
+            Connection conn = null;
+        PreparedStatement req = null;
+        ResultSet res = null;
+
+        conn = Avocado.DBConn();
+        String sql = "INSERT INTO `confreres`(`Type_Conf`, `Nom_Conf`, `Prenom_Conf`, `Ville`, `Add_Conf`, `Tel_Conf`, `Email_Conf`, `Description`) VALUES (?,?,?,?,?,?,?,?)";
+        try{
+            req = conn.prepareStatement(sql);
+            req.setString(2, Nom.getText());
+            req.setString(3, Prenom.getText());
+            req.setString(4, Ville.getText());
+            req.setString(5, Adresse.getText());
+            req.setString(6, Tel.getText());
+            req.setString(7, Mail.getText());
+            req.setString(8, Com.getText());
+            req.setString(1, (String) TypeClient.getSelectedItem());
+            req.executeUpdate();        
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(AjoutAffaire.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -250,27 +274,7 @@ public class AjoutConfrere extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        Connection conn = null;
-        PreparedStatement req = null;
-        ResultSet res = null;
-
-        conn = Avocado.DBConn();
-        String sql = "INSERT INTO `confreres`(`Type_Conf`, `Nom_Conf`, `Prenom_Conf`, `Ville`, `Add_Conf`, `Tel_Conf`, `Email_Conf`, `Description`) VALUES (?,?,?,?,?,?,?,?)";
-        try{
-            req = conn.prepareStatement(sql);
-            req.setString(2, Nom.getText());
-            req.setString(3, Prenom.getText());
-            req.setString(4, Ville.getText());
-            req.setString(5, Adresse.getText());
-            req.setString(6, Tel.getText());
-            req.setString(7, Mail.getText());
-            req.setString(8, Com.getText());
-            req.setString(1, (String) TypeClient.getSelectedItem());
-            req.executeUpdate();        
-        }
-        catch (SQLException ex) {
-            Logger.getLogger(AjoutAffaire.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        AjoutC();
         JOptionPane.showMessageDialog(null, "Confrère Ajouté Avec Succés");
         Nom.setText("");
         Prenom.setText("");
@@ -298,18 +302,39 @@ public class AjoutConfrere extends javax.swing.JPanel {
         if(!Character.isDigit(typed)) evt.consume();        
     }//GEN-LAST:event_TelKeyTyped
 
+        public static void setVisibility(){
+        jButton6.setVisible(false);
+        jButton5.setVisible(false);
+    }
+        
+           public static void getIds(){
+        Connection conn = Avocado.DBConn();
+        PreparedStatement req = null;
+        ResultSet res = null;
+        if(AjoutAffaire.getType_c() == 1 || AjoutAffaire.getType_c() == 2) {       
+        String sql1 = "SELECT MAX(`Id_Conf`) FROM `confreres`";
+            try{
+                req = conn.prepareStatement(sql1);
+                res = req.executeQuery();
+                if(res.next()) {
+                    AjoutAffaire.setId_AvcAdv(res.getInt("ID"));
+                }
+            } catch (SQLException ex) {
+            Logger.getLogger(AjoutClient.class.getName()).log(Level.SEVERE, null, ex);
+        }}
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Adresse;
-    private javax.swing.JTextField Com;
-    private javax.swing.JTextField Mail;
-    private javax.swing.JTextField Nom;
-    private javax.swing.JTextField Prenom;
-    private javax.swing.JTextField Tel;
+    private static javax.swing.JTextField Adresse;
+    private static javax.swing.JTextField Com;
+    private static javax.swing.JTextField Mail;
+    private static javax.swing.JTextField Nom;
+    private static javax.swing.JTextField Prenom;
+    private static javax.swing.JTextField Tel;
     private static javax.swing.JComboBox<String> TypeClient;
-    private javax.swing.JTextField Ville;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private static javax.swing.JTextField Ville;
+    private static javax.swing.JButton jButton5;
+    private static javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel15;

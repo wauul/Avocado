@@ -43,6 +43,9 @@ public class AjoutAffaire extends javax.swing.JPanel {
         Contre_ID.setText(Integer.toString(Id_Adv));
     }
     
+        public static void setId_AvcAdv(int Id_Adv) {
+        Avocat_Contre_ID.setText(Integer.toString(Id_Adv));
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.

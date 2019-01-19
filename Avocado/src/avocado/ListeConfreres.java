@@ -24,6 +24,10 @@ public class ListeConfreres extends javax.swing.JPanel {
     PreparedStatement req = null;
     ResultSet res = null;
     
+public static void GetIds(){
+        AjoutAffaire.setId_AvcAdv(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString()));
+            }
+    
     
 public void AffichageConfrere(){
     conn = Avocado.DBConn();
@@ -171,6 +175,6 @@ public void Affichage(int b) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private static javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
