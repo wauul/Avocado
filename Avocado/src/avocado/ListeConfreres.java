@@ -28,7 +28,48 @@ public static int GetIds(){
         return Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
             }
     
-    
+
+public void AffichageMembre(){
+    conn = Avocado.DBConn();
+    String sql = "SELECT  Id_Conf , `Nom_Conf`, `Prenom_Conf`, `Ville`, `Add_Conf`, `Tel_Conf`, `Email_Conf`, `Type_Conf`, `Description` FROM `confreres`, utilisateur WHERE `Id_Conf` IN (utilisateur.Id_Avoc)";
+    try{
+        req = conn.prepareStatement(sql);
+        res = req.executeQuery();
+        int k= 0;
+        int i = 0;
+        if(res.next()){
+                    res.last();
+                    k=res.getRow();
+                    res.beforeFirst();
+                }
+               Object[][] t=new Object[k][9];
+        
+        while(res.next())
+        {
+                   t[i][0]=res.getString(1);
+                   t[i][1]=res.getString(2);
+                   t[i][2]=res.getString(3);
+                   t[i][3]=res.getString(4);
+                   t[i][4]=res.getString(5);
+                   t[i][5]=res.getString(6);
+                   t[i][6]=res.getString(7);
+                   t[i][7]=res.getString(8);
+                   t[i][8]=res.getString(9);
+                   i++;
+                }
+               
+                res.close();
+         final String columnNames[] = {"ID","Nom","Prénom","Ville", "Adresse", "Numéro de téléphone", "Email", "Poste", "Description"};
+         jTable1.setModel(new DefaultTableModel(t,columnNames));
+         ListSelectionModel listMod =  jTable1.getSelectionModel();
+         listMod.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+         listMod.addListSelectionListener(jTable1);
+        
+    }   catch (SQLException ex) {
+            Logger.getLogger(ListeConfreres.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
+
 public void AffichageConfrere(){
     conn = Avocado.DBConn();
     String sql = "SELECT  Id_Conf , `Nom_Conf`, `Prenom_Conf`, `Ville`, `Add_Conf`, `Tel_Conf`, `Email_Conf`, `Type_Conf`, `Description` FROM `confreres`";
@@ -129,8 +170,10 @@ public void Affichage(int b) {
      */
     public ListeConfreres() {
         initComponents();
-        if(ConfrereMenu.getBtnC() == 1) AffichageConfrere();
-        else  Affichage(ConfrereMenu.getBtnC());
+        if(AjoutAudience.getMembre() == 1) AffichageMembre();
+        else{ 
+            if(ConfrereMenu.getBtnC() == 1) AffichageConfrere();      
+            else Affichage(ConfrereMenu.getBtnC());}
     }
 
     /**

@@ -16,6 +16,11 @@ public class SelectAvocat extends javax.swing.JFrame {
      */
     public SelectAvocat() {
         initComponents();
+        if(AjoutAudience.getAud() == 1){
+                    ListeConfreres t = new ListeConfreres();
+        AffichageTab(t);
+        }
+        if(AjoutAudience.getMembre() == 1) jToggleButton3.setVisible(false);
     }
         public static void AffichageTab(javax.swing.JPanel x){
         jPanel1.removeAll();        
@@ -143,14 +148,19 @@ public class SelectAvocat extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        AjoutAudience.setAud(0);
+        AjoutAudience.setMembre(0);
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(AjoutAudience.getAud() == 1) AjoutAudience.setConfrere(ListeConfreres.GetIds());
+        if(AjoutAudience.getAud() == 1) {AjoutAudience.setConfrere(ListeConfreres.GetIds());}
         else {
         if(jToggleButton4.isSelected()) AjoutAffaire.setId_AvcAdv(ListeConfreres.GetIds());
         else if(jToggleButton3.isSelected()){AjoutConfrere.AjoutC();  AjoutConfrere.getIds();}}
+        AjoutAudience.setAud(0);
+        AjoutAudience.setMembre(0);
+        
         this.dispose();  // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -193,7 +203,7 @@ public class SelectAvocat extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private static javax.swing.JPanel jPanel1;
-    private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton4;
+    private static javax.swing.JToggleButton jToggleButton3;
+    private static javax.swing.JToggleButton jToggleButton4;
     // End of variables declaration//GEN-END:variables
 }

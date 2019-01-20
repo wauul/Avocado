@@ -140,7 +140,8 @@ public class SelectClients extends javax.swing.JFrame {
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
         jToggleButton3.setSelected(false);
-        ClientMenu.setBtnC(1);
+        if(AjoutAffaire.getType_c()== 1) ClientMenu.setBtnC(1);
+        else if(AjoutAffaire.getType_c() == 2) ClientMenu.setBtnC(2);
         ListeClients t = new ListeClients();
         AffichageTab(t);
     }//GEN-LAST:event_jToggleButton4ActionPerformed
@@ -150,7 +151,7 @@ public class SelectClients extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton4MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        ClientMenu.setBtnC(0);
     this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 

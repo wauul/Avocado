@@ -52,7 +52,19 @@ public class AjoutAudience extends javax.swing.JPanel {
     public static void setConfrere(int Confrere) {
         AjoutAudience.Confrere.setText(Integer.toString( Confrere));
     }
+    
+    
+    static int membre = 0;
 
+    public static int getMembre() {
+        return membre;
+    }
+
+    public static void setMembre(int membre) {
+        AjoutAudience.membre = membre;
+    }
+    
+    
 
     
 
@@ -355,7 +367,8 @@ public class AjoutAudience extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+       membre = 1;
+        new SelectAvocat().setVisible(true);  // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     
