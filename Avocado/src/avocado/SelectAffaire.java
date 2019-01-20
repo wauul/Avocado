@@ -23,6 +23,8 @@ public class SelectAffaire extends javax.swing.JFrame {
         jPanel1.add(x);
         jPanel1.revalidate(); 
     }
+        
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -133,7 +135,9 @@ public class SelectAffaire extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    if(jToggleButton4.isSelected()) AjoutAudience.setAff(ListesAffaires.GetIds());
+    if(jToggleButton4.isSelected()) 
+        if(AjoutAudience.getfAud() == 1 ) {AjoutAudience.setAff(ListesAffaires.GetIds()); AjoutAudience.setfAud(0);}
+        else if(Paiements.getP() == 1){ Paiements.setAff(ListesAffaires.GetIds()); Paiements.setPaieInfo(ListesAffaires.GetPaid(), ListesAffaires.GetIds()); Paiements.setP(0);}
         this.dispose();  // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 

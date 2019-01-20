@@ -29,6 +29,16 @@ public class AjoutAudience extends javax.swing.JPanel {
     }
     
     
+    static int fromAud = 0; 
+
+    public static int getfAud() {
+        return fromAud;
+    }
+
+    public static void setfAud(int fromAud) {
+        AjoutAudience.fromAud = fromAud;
+    }
+    
     static int Aud = 0;
 
     public static int getAud() {
@@ -331,6 +341,7 @@ public class AjoutAudience extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        fromAud = 1;
         new SelectAffaire().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

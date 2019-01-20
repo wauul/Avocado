@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTextField;
 
 /**
  *
@@ -25,9 +26,29 @@ public class Paiements extends javax.swing.JPanel {
         initComponents();
     }
     
+    static int p = 0;
+
+    public static int getP() {
+        return p;
+    }
+
+    public static void setP(int p) {
+        Paiements.p = p;
+    }
+
+    public static void setAff(int Affaire) {
+        Paiements.Affaire.setText(Integer.toString(Affaire));
+    }
+    
+    
+    
+    
+    
     
     public static void setPaieInfo(Double Mont, int i){
         Total.setText(Mont.toString());
+       
+        
         Connection conn = null;
         PreparedStatement req = null;
         ResultSet res = null;
@@ -40,10 +61,11 @@ public class Paiements extends javax.swing.JPanel {
             if(res.next()){
                 Reste.setText(Double.toString(res.getDouble("Reste_Paiement")));
             }
+            else Reste.setText(Mont.toString());
             
         } catch (SQLException ex) {
             Logger.getLogger(Paiements.class.getName()).log(Level.SEVERE, null, ex);
-        }       
+        }     
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -281,7 +303,8 @@ public class Paiements extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        p = 1;
+        new SelectAffaire().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

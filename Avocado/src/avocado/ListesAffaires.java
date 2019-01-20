@@ -29,7 +29,7 @@ public class ListesAffaires extends javax.swing.JPanel {
     public ListesAffaires() {
         initComponents();
     conn = Avocado.DBConn();
-    String sql = "SELECT Id_Aff ,`Titre_Aff`, `Qualité_Plai`, `Nature_Aff`, `Objet`, `Date_Ent_Aff`, `Comm_Aff` FROM `affaires`";
+    String sql = "SELECT Id_Aff ,`Titre_Aff`, `Qualité_Plai`, `Nature_Aff`, `Objet`, `Date_Ent_Aff`, `Honnoraires_Aff` , `Comm_Aff` FROM `affaires`";
     try{
         req = conn.prepareStatement(sql);
         res = req.executeQuery();
@@ -40,7 +40,7 @@ public class ListesAffaires extends javax.swing.JPanel {
                     k=res.getRow();
                     res.beforeFirst();
                 }
-               Object[][] t=new Object[k][7];
+               Object[][] t=new Object[k][8];
         
         while(res.next())
         {
@@ -51,11 +51,12 @@ public class ListesAffaires extends javax.swing.JPanel {
                    t[i][4]=res.getString(5);
                    t[i][5]=res.getString(6);
                    t[i][6]=res.getString(7);
+                   t[i][7]=res.getString(8);
                    i++;
                 }
                
                 res.close();
-         final String columnNames[] = {"ID Affaire","Titre","Qualité","Nature de l'affaire", "Objet", "Date","Commentaires"};
+         final String columnNames[] = {"ID Affaire","Titre","Qualité","Nature de l'affaire", "Objet", "Date","Honoraires","Commentaires"};
          jTable1.setModel(new DefaultTableModel(t,columnNames));
          ListSelectionModel listMod =  jTable1.getSelectionModel();
          listMod.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -67,6 +68,10 @@ public class ListesAffaires extends javax.swing.JPanel {
     }
     public static int GetIds(){
         return Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+            }
+    
+        public static double GetPaid(){
+        return Double.parseDouble(jTable1.getValueAt(jTable1.getSelectedRow(), 6).toString());
             }
     /**
      * This method is called from within the constructor to initialize the form.
