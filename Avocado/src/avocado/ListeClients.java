@@ -25,7 +25,15 @@ public class ListeClients extends javax.swing.JPanel {
     PreparedStatement req = null;
     ResultSet res = null;
 
-    
+static int IDtoMod = 0;
+
+    public static int getIDtoMod() {
+        return IDtoMod;
+    }
+
+    public static void setIDtoMod(int IDtoMod) {
+        ListeClients.IDtoMod = IDtoMod;
+    }
 
     
 public void AffichageClients(){
@@ -350,7 +358,23 @@ public void AffichagePartieAdv(String s) {
     }//GEN-LAST:event_SearchKeyReleased
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-              // TODO add your handling code here:
+        IDtoMod = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+        MODIFY.setFrom(1);
+        conn = Avocado.DBConn();
+        String sql = "SELECT * FROM `client` WHERE `Id_Cli` = ?";   
+        try{
+            req = conn.prepareStatement(sql);
+            req.setInt(1, IDtoMod);
+            res = req.executeQuery();
+            if(res.next()) {
+                new MODIFY().setVisible(true);
+                AjoutClient.setToModify(res.getString("Add_Cli"), res.getString("DateNaiss_Cli"), res.getString("Email_Cli"), res.getString("Nom_Cli"), res.getString("Prenom_Cli"), res.getString("Num_CarteId"), res.getString("Type_Cli"), res.getString("RaiSoc_Cli"), res.getString("Tel_Cli"), res.getString("Type_CarteID"), res.getString("Ville"));
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ListeClients.class.getName()).log(Level.SEVERE, null, ex);}
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

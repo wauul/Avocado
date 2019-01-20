@@ -5,7 +5,6 @@
  */
 package avocado;
 
-import com.toedter.calendar.JDateChooser;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -14,9 +13,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /**
  *
@@ -29,7 +26,6 @@ public class AjoutClient extends javax.swing.JPanel {
      */
     public AjoutClient() {
         initComponents();
-        
         if(AjoutAffaire.getType_c() == 1){TypeClient.setSelectedIndex(0); TypeClient.setEditable(false);}
         else if(AjoutAffaire.getType_c() == 2){TypeClient.setSelectedIndex(1); TypeClient.setEditable(false);}
     }
@@ -38,7 +34,6 @@ public class AjoutClient extends javax.swing.JPanel {
         Nom.setText(NomC);
         Prenom.setText(PrenomC);
         Adresse.setText(AdresseC);
-        DateNaiss.setDate(Date.valueOf(DateC));
         Mail.setText(MailC);
         NumCarte.setText(NumCarteC);
         RaisSocial.setText(RaisSocC);
@@ -46,6 +41,7 @@ public class AjoutClient extends javax.swing.JPanel {
         Ville.setText(VilleC);
         TypeCarte.setSelectedItem(TypeCarteC);
         TypeClient.setSelectedItem(TypeCliC);
+        
     }
     
     /**
@@ -414,6 +410,35 @@ public class AjoutClient extends javax.swing.JPanel {
             req.setString(9, NumCarte.getText());
             req.setString(10, TypeClient.getSelectedItem().toString());
             req.setString(11, RaisSocial.getText());
+            req.executeUpdate(); }
+        catch (SQLException ex) {
+            Logger.getLogger(AjoutAffaire.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+    }
+    
+
+    public static void updateC(){
+        Connection conn = null;
+        PreparedStatement req = null;
+           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+           String s= dateFormat.format(DateNaiss.getDate());
+
+        conn = Avocado.DBConn();
+        String sql = "UPDATE `client` SET `Nom_Cli`=? ,`Prenom_Cli`=? ,`DateNaiss_Cli`=?,`Ville`=?,`Add_Cli`=?,`Tel_Cli`=?,`Email_Cli`=?,`Type_CarteID`=? ,`Num_CarteId`=?,`Type_Cli`=?,`RaiSoc_Cli`=? WHERE `Id_Cli` = ?";
+        try{
+            req = conn.prepareStatement(sql);
+            req.setString(1, Nom.getText());
+            req.setString(2, Prenom.getText());
+            req.setString(3, s);
+            req.setString(4, Ville.getText());
+            req.setString(5, Adresse.getText());
+            req.setString(6, Tel.getText());
+            req.setString(7, Mail.getText());
+            req.setString(8, TypeCarte.getSelectedItem().toString());
+            req.setString(9, NumCarte.getText());
+            req.setString(10, TypeClient.getSelectedItem().toString());
+            req.setString(11, RaisSocial.getText());
+            req.setString(12, Integer.toString(ListeClients.getIDtoMod()));
             req.executeUpdate(); }
         catch (SQLException ex) {
             Logger.getLogger(AjoutAffaire.class.getName()).log(Level.SEVERE, null, ex);
