@@ -9,25 +9,38 @@ package avocado;
  *
  * @author Waul
  */
-public class SelectAvocat extends javax.swing.JFrame {
+public class Juridiction extends javax.swing.JFrame {
 
     /**
      * Creates new form SelectAvocat
      */
-    public SelectAvocat() {
+    public Juridiction() {
         initComponents();
-        if(AjoutAudience.getAud() == 1){
-                    ListeConfreres t = new ListeConfreres();
+        ListeJuridictions t = new ListeJuridictions();
         AffichageTab(t);
-        }
-        if(AjoutAudience.getMembre() == 1) jToggleButton3.setVisible(false);
+        jToggleButton4.setSelected(true);
     }
+    
+    
         public static void AffichageTab(javax.swing.JPanel x){
         jPanel1.removeAll();        
         jPanel1.setLayout(new java.awt.BorderLayout());    
         jPanel1.add(x);
         jPanel1.revalidate(); 
     }
+        
+        
+        private static int from;
+
+    public static int getFrom() {
+        return from;
+    }
+
+    public static void setFrom(int from) {
+        Juridiction.from = from;
+    }
+        
+        
         
         
 
@@ -49,7 +62,7 @@ public class SelectAvocat extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jToggleButton3.setBackground(new java.awt.Color(84, 127, 206));
-        jToggleButton3.setText("Ajouter Ajouter");
+        jToggleButton3.setText("Ajouter Juridiction");
         jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton3ActionPerformed(evt);
@@ -57,7 +70,7 @@ public class SelectAvocat extends javax.swing.JFrame {
         });
 
         jToggleButton4.setBackground(new java.awt.Color(84, 127, 206));
-        jToggleButton4.setText("Selectionner Avocat");
+        jToggleButton4.setText("Selectionner Juridiction");
         jToggleButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jToggleButton4MouseClicked(evt);
@@ -91,7 +104,7 @@ public class SelectAvocat extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 245, Short.MAX_VALUE)
+            .addGap(0, 233, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -119,7 +132,7 @@ public class SelectAvocat extends javax.swing.JFrame {
                     .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -131,7 +144,7 @@ public class SelectAvocat extends javax.swing.JFrame {
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
         jToggleButton4.setSelected(false);
-        AjoutConfrere t = new AjoutConfrere();
+        AjoutJurid t = new AjoutJurid();
         AffichageTab(t);
         t.setVisibility();// TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton3ActionPerformed
@@ -142,25 +155,19 @@ public class SelectAvocat extends javax.swing.JFrame {
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
         jToggleButton3.setSelected(false);
-        ConfrereMenu.setbnC(1);
-        ListeConfreres t = new ListeConfreres();
+        ListeJuridictions t = new ListeJuridictions();
         AffichageTab(t);
     }//GEN-LAST:event_jToggleButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        AjoutAudience.setAud(0);
-        AjoutAudience.setMembre(0);
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(AjoutAudience.getAud() == 1) {AjoutAudience.setConfrere(ListeConfreres.GetIds());}
-        else {
-        if(jToggleButton4.isSelected()) AjoutAffaire.setId_AvcAdv(ListeConfreres.GetIds());
-        else if(jToggleButton3.isSelected()){AjoutConfrere.AjoutC();  AjoutConfrere.getIds();}}
-        AjoutAudience.setAud(0);
-        AjoutAudience.setMembre(0);
+        if(jToggleButton4.isSelected()) {if(from == 1 ) AjoutAudience.setId_Jur(ListeJuridictions.GetIds());
+                                        else if (from == 2) AjoutAffaire.setId_Jur(ListeJuridictions.GetIds());}
         
+        else if(jToggleButton3.isSelected()) AjoutJurid.getIds();
         this.dispose();  // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -181,20 +188,21 @@ public class SelectAvocat extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SelectAvocat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Juridiction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SelectAvocat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Juridiction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SelectAvocat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Juridiction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SelectAvocat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Juridiction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SelectAvocat().setVisible(true);
+                new Juridiction().setVisible(true);
             }
         });
     }

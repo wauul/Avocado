@@ -65,8 +65,9 @@ public class AjoutAudience extends javax.swing.JPanel {
     }
     
     
-
-    
+    public static void setId_Jur(int jur) {
+        Jurid.setText(Integer.toString(jur));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -83,7 +84,7 @@ public class AjoutAudience extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         Date = new com.toedter.calendar.JDateChooser();
         jLabel10 = new javax.swing.JLabel();
-        Juridiction = new javax.swing.JTextField();
+        Jurid = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         Statut = new javax.swing.JComboBox<>();
         jButton6 = new javax.swing.JButton();
@@ -121,7 +122,7 @@ public class AjoutAudience extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Juridiction");
 
-        Juridiction.setEditable(false);
+        Jurid.setEditable(false);
 
         jButton2.setText("..");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +144,7 @@ public class AjoutAudience extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Juridiction, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Jurid, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -165,7 +166,7 @@ public class AjoutAudience extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
                         .addComponent(jLabel10)
-                        .addComponent(Juridiction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Jurid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
@@ -338,7 +339,7 @@ public class AjoutAudience extends javax.swing.JPanel {
         Membre.setText("");
         Date.setDate(null);
         Statut.setSelectedIndex(-1);
-        Juridiction.setText("");
+        Jurid.setText("");
         Affaire.setText("");
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -348,7 +349,7 @@ public class AjoutAudience extends javax.swing.JPanel {
         Membre.setText("");
         Date.setDate(null);
         Statut.setSelectedIndex(-1);
-        Juridiction.setText("");
+        Jurid.setText("");
         Affaire.setText("");
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -358,7 +359,8 @@ public class AjoutAudience extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+    Juridiction.setFrom(1);
+    new Juridiction().setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -383,7 +385,7 @@ public class AjoutAudience extends javax.swing.JPanel {
         try{
             req = conn.prepareStatement(sql);
             req.setString(1, Affaire.getText());
-            req.setString(2, Juridiction.getText());
+            req.setString(2, Jurid.getText());
             req.setString(3, s);
             req.setString(4, (String) Statut.getSelectedItem());
             req.setString(5, Membre.getText());
@@ -401,7 +403,7 @@ public class AjoutAudience extends javax.swing.JPanel {
         Confrere.setText(Sub);
         Membre.setText(Res);
         Statut.setSelectedItem(Stat);
-        Juridiction.setText(Jur);
+        Jurid.setText(Jur);
         Affaire.setText(Aff);
     }
     
@@ -417,7 +419,7 @@ public class AjoutAudience extends javax.swing.JPanel {
         try{
             req = conn.prepareStatement(sql);
             req.setString(1, Affaire.getText());
-            req.setString(2, Juridiction.getText());
+            req.setString(2, Jurid.getText());
             req.setString(3, s);
             req.setString(4, (String) Statut.getSelectedItem());
             req.setString(5, Membre.getText());
@@ -442,7 +444,7 @@ public class AjoutAudience extends javax.swing.JPanel {
     private static javax.swing.JTextField Com;
     private static javax.swing.JTextField Confrere;
     private static com.toedter.calendar.JDateChooser Date;
-    private static javax.swing.JTextField Juridiction;
+    private static javax.swing.JTextField Jurid;
     private static javax.swing.JTextField Membre;
     private static javax.swing.JComboBox<String> Statut;
     private javax.swing.JButton jButton1;

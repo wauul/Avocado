@@ -27,6 +27,7 @@ public final class MainFrame extends javax.swing.JFrame {
         setColor(btn_1); 
         ind_1.setOpaque(true);
         resetColor(new JPanel[]{btn_2,btn_3,btn_4}, new JPanel[]{ind_2,ind_3, ind_4});
+        if(Avocado.getAccType() == 3){btn_3.setEnabled(false); btn_4.setEnabled(false); btn_2.setEnabled(false);}
     }
     
         public void MenuTab(javax.swing.JPanel x) {

@@ -49,6 +49,9 @@ public class AjoutAffaire extends javax.swing.JPanel {
         public static void setId_AvcAdv(int Id_Adv) {
         Avocat_Contre_ID.setText(Integer.toString(Id_Adv));
     }
+        public static void setId_Jur(int jur) {
+        Juridiction_ID.setText(Integer.toString(jur));
+    }
         
         
     public static void setToModify(String Cli,String Con,String Qual,String AvcCon,String Juri,String Nat,String Det,String Obje,String Honoraire,String Com){
@@ -413,7 +416,8 @@ public class AjoutAffaire extends javax.swing.JPanel {
     JOptionPane.showMessageDialog(null, "Affaire Ajouté Avec Succés");
     clearAll();
     }//GEN-LAST:event_jButton5ActionPerformed
-public static void clearAll(){
+
+    public static void clearAll(){
             Avocat_Contre_ID.setText("");
         Client_ID.setText("");
         Commentaire.setText("");
@@ -431,7 +435,8 @@ public static void clearAll(){
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-            // TODO add your handling code here:
+    Juridiction.setFrom(2);  
+    new Juridiction().setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -100,7 +100,7 @@
                       <Group type="102" attributes="0">
                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="Juridiction" min="-2" pref="121" max="-2" attributes="0"/>
+                          <Component id="Jurid" min="-2" pref="121" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jButton2" min="-2" pref="31" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
@@ -128,7 +128,7 @@
                       <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Juridiction" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jurid" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton2" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
                       <Component id="Date" min="-2" max="-2" attributes="0"/>
@@ -176,7 +176,7 @@
             <Property name="text" type="java.lang.String" value="Juridiction"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="Juridiction">
+        <Component class="javax.swing.JTextField" name="Jurid">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>

@@ -22,8 +22,11 @@ public class Avocado {
     static void setaccType(int x){
         accType = x;
     }
-    
 
+    public static int getAccType() {
+        return accType;
+    }
+    
     
     static void setaccID(int x){
         accID = x;
