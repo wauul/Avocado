@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,7 +24,9 @@ public class ListeClients extends javax.swing.JPanel {
     Connection conn = null;
     PreparedStatement req = null;
     ResultSet res = null;
+
     
+
     
 public void AffichageClients(){
         conn = Avocado.DBConn();
@@ -110,6 +113,103 @@ public void AffichagePartieAdv() {
             Logger.getLogger(ListeClients.class.getName()).log(Level.SEVERE, null, ex);
         }
 }
+
+
+
+
+public void AffichageClients(String s){
+    if(s == null) AffichageClients();
+    else {
+    conn = Avocado.DBConn();
+        s = "%" + s + "%";
+    String sql = "SELECT `Id_Cli`, `Nom_Cli`, `Prenom_Cli`, `DateNaiss_Cli`, `Ville`, `Add_Cli`, `Tel_Cli`, `Email_Cli`, `Type_CarteID`, `Num_CarteId`, `RaiSoc_Cli` FROM `client` WHERE Type_Cli = 'Client' AND `Nom_Cli` LIKE ?";
+    try{
+        req = conn.prepareStatement(sql);
+        req.setString(1, s);
+        res = req.executeQuery();
+        int k= 0;
+        int i = 0;
+        if(res.next()){
+                    res.last();
+                    k=res.getRow();
+                    res.beforeFirst();
+                }
+               Object[][] t=new Object[k][11];
+        
+        while(res.next())
+        {
+                   t[i][0]=res.getString(1);
+                   t[i][1]=res.getString(2);
+                   t[i][2]=res.getString(3);
+                   t[i][3]=res.getString(4);
+                   t[i][4]=res.getString(5);
+                   t[i][5]=res.getString(6);
+                   t[i][6]=res.getString(7);
+                   t[i][7]=res.getString(8);
+                   t[i][8]=res.getString(9);
+                   t[i][9]=res.getString(10);
+                   t[i][10]=res.getString(11);
+                   i++;
+                }
+               
+                res.close();
+         final String columnNames[] = {"ID","Nom","Prénom","Date de naissance","Ville", "Adresse", "Numéro de téléphone", "Email", "Type De Document", "Numero De Carte", "Raison Social"};
+         jTable1.setModel(new DefaultTableModel(t,columnNames));
+         ListSelectionModel listMod =  jTable1.getSelectionModel();
+         listMod.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+         listMod.addListSelectionListener(jTable1);
+        
+    }   catch (SQLException ex) {
+            Logger.getLogger(ListeClients.class.getName()).log(Level.SEVERE, null, ex);
+        }}
+}
+
+public void AffichagePartieAdv(String s) {
+    if(s== null) AffichagePartieAdv();
+    else{
+        conn = Avocado.DBConn();
+        s = "%" + s + "%";
+    String sql = "SELECT `Id_Cli`, `Nom_Cli`, `Prenom_Cli`, `DateNaiss_Cli`, `Ville`, `Add_Cli`, `Tel_Cli`, `Email_Cli`, `Type_CarteID`, `Num_CarteId`, `RaiSoc_Cli` FROM `client` WHERE Type_Cli = 'Partie Adverse' AND `Nom_Cli` LIKE ?";
+    try{
+        req = conn.prepareStatement(sql);
+        req.setString(1, s);
+        res = req.executeQuery();
+        int k= 0;
+        int i = 0;
+        if(res.next()){
+                    res.last();
+                    k=res.getRow();
+                    res.beforeFirst();
+                }
+               Object[][] t=new Object[k][11];
+        
+        while(res.next())
+        {
+                   t[i][0]=res.getString(1);
+                   t[i][1]=res.getString(2);
+                   t[i][2]=res.getString(3);
+                   t[i][3]=res.getString(4);
+                   t[i][4]=res.getString(5);
+                   t[i][5]=res.getString(6);
+                   t[i][6]=res.getString(7);
+                   t[i][7]=res.getString(8);
+                   t[i][8]=res.getString(9);
+                   t[i][9]=res.getString(10);
+                   t[i][10]=res.getString(11);
+                   i++;
+                }
+               
+                res.close();
+         final String columnNames[] = {"ID","Nom","Prénom","Date de naissance","Ville", "Adresse", "Numéro de téléphone", "Email", "Type De Document", "Numero De Carte", "Raison Social"};
+         jTable1.setModel(new DefaultTableModel(t,columnNames));
+         ListSelectionModel listMod =  jTable1.getSelectionModel();
+         listMod.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+         listMod.addListSelectionListener(jTable1);
+        
+    }   catch (SQLException ex) {
+            Logger.getLogger(ListeClients.class.getName()).log(Level.SEVERE, null, ex);
+        }}
+}
     /**
      * Creates new form ListesAffaires
      */
@@ -130,6 +230,12 @@ public void AffichagePartieAdv() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        Search = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -145,20 +251,122 @@ public void AffichagePartieAdv() {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jButton1.setText("Supprimer");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Modifier");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        Search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                SearchKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                SearchKeyTyped(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("RECHERCHE");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel2)
+                .addGap(30, 30, 30)
+                .addComponent(Search)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(Search, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        jLabel1.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 18)); // NOI18N
+        jLabel1.setText("Liste Des Client/Parties Adverse");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 833, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void SearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchKeyTyped
+     
+    }//GEN-LAST:event_SearchKeyTyped
+
+    private void SearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchKeyReleased
+       String s = Search.getText();
+        if(ClientMenu.getbtnC() == 1) AffichageClients(s);
+        else if(ClientMenu.getbtnC() == 2) AffichagePartieAdv(s);          // TODO add your handling code here:
+    }//GEN-LAST:event_SearchKeyReleased
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+              // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        conn = Avocado.DBConn();
+        String sql = "DELETE FROM `client` WHERE `Id_Cli` = ?";
+        try{
+            req = conn.prepareStatement(sql);
+            req.setInt(1, Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString()));
+            req.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ListeClients.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(null, "Client Supprimé Avec Succés");
+        if(ClientMenu.getbtnC() == 1) AffichageClients();
+        else if(ClientMenu.getbtnC() == 2) AffichagePartieAdv(); 
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     public static void GetIds(){
@@ -167,6 +375,12 @@ public void AffichagePartieAdv() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Search;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

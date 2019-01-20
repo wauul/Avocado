@@ -5,14 +5,18 @@
  */
 package avocado;
 
+import com.toedter.calendar.JDateChooser;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -29,9 +33,21 @@ public class AjoutClient extends javax.swing.JPanel {
         if(AjoutAffaire.getType_c() == 1){TypeClient.setSelectedIndex(0); TypeClient.setEditable(false);}
         else if(AjoutAffaire.getType_c() == 2){TypeClient.setSelectedIndex(1); TypeClient.setEditable(false);}
     }
-
     
-
+    public static void setToModify(String AdresseC, String DateC, String MailC, String NomC, String PrenomC, String NumCarteC, String TypeCliC, String RaisSocC, String TelC, String TypeCarteC, String VilleC){
+        Nom.setText(NomC);
+        Prenom.setText(PrenomC);
+        Adresse.setText(AdresseC);
+        DateNaiss.setDate(Date.valueOf(DateC));
+        Mail.setText(MailC);
+        NumCarte.setText(NumCarteC);
+        RaisSocial.setText(RaisSocC);
+        Tel.setText(TelC);
+        Ville.setText(VilleC);
+        TypeCarte.setSelectedItem(TypeCarteC);
+        TypeClient.setSelectedItem(TypeCliC);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
