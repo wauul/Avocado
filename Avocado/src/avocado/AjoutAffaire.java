@@ -21,6 +21,9 @@ import javax.swing.JOptionPane;
  * @author Waul
  */
 public class AjoutAffaire extends javax.swing.JPanel {
+    
+    static Connection conn = null;
+    static PreparedStatement req = null;
 
     /**
      * Creates new form AjoutAffaire
@@ -45,6 +48,20 @@ public class AjoutAffaire extends javax.swing.JPanel {
     
         public static void setId_AvcAdv(int Id_Adv) {
         Avocat_Contre_ID.setText(Integer.toString(Id_Adv));
+    }
+        
+        
+    public static void setToModify(String Cli,String Con,String Qual,String AvcCon,String Juri,String Nat,String Det,String Obje,String Honoraire,String Com){
+        Avocat_Contre_ID.setText(AvcCon);
+        Client_ID.setText(Cli);
+        Commentaire.setText(Com);
+        Contre_ID.setText(Con);
+        Details.setText(Det);
+        Honnoraires.setText(Honoraire);
+        Juridiction_ID.setText(Juri);
+        Nature.setSelectedItem(Nat);
+        Objet.setText(Obje);
+        Qualite.setSelectedItem(Qual);
     }
     
     /**
@@ -372,9 +389,6 @@ public class AjoutAffaire extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-    Connection conn = null;
-    PreparedStatement req = null;
-    
            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
            String s= dateFormat.format(jDate.getDate());
     conn = Avocado.DBConn();
@@ -397,21 +411,10 @@ public class AjoutAffaire extends javax.swing.JPanel {
             Logger.getLogger(AjoutAffaire.class.getName()).log(Level.SEVERE, null, ex);
         }    
     JOptionPane.showMessageDialog(null, "Affaire Ajouté Avec Succés");
-        Avocat_Contre_ID.setText("");
-        Client_ID.setText("");
-        Commentaire.setText("");
-        Contre_ID.setText("");
-        Details.setText("");
-        Honnoraires.setText("");
-        Juridiction_ID.setText("");
-        Nature.setSelectedIndex(-1);
-        Objet.setText("");
-        Qualite.setSelectedIndex(-1);
-        jDate.setDate(null);
+    clearAll();
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        Avocat_Contre_ID.setText("");
+public static void clearAll(){
+            Avocat_Contre_ID.setText("");
         Client_ID.setText("");
         Commentaire.setText("");
         Contre_ID.setText("");
@@ -422,6 +425,9 @@ public class AjoutAffaire extends javax.swing.JPanel {
         Objet.setText("");
         Qualite.setSelectedIndex(-1);
         jDate.setDate(null);
+}
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        clearAll();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -442,25 +448,58 @@ public class AjoutAffaire extends javax.swing.JPanel {
     new SelectAvocat().setVisible(true);       // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    
+            public static void setVisibility(){
+        jButton6.setVisible(false);
+        jButton5.setVisible(false);
+    }
+            
+            
+            public static void updateA(){
+                           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+           String s= dateFormat.format(jDate.getDate());
+    conn = Avocado.DBConn();
+    String sql = "UPDATE `affaires` SET `Id_Client` =?, `Id_Contre` =?, `Id_AvocatContre` =?, `Etat_Aff` =?, `Qualité_Plai` =?, `Id_Juri` =?, `Nature_Aff` =?, `Objet` =?, `Date_Ent_Aff` =?, `Honnoraires_Aff` =?, `Comm_Aff` =? WHERE Id_Aff = ?";
+    try{
+        req = conn.prepareStatement(sql);
+        req.setString(1, Client_ID.getText());
+        req.setString(2, Contre_ID.getText());
+        req.setString(3, Avocat_Contre_ID.getText());
+        req.setBoolean(4, true);
+        req.setString(5, Qualite.getSelectedItem().toString());
+        req.setString(6, Juridiction_ID.getText());
+        req.setString(7, Nature.getSelectedItem().toString());
+        req.setString(8, Objet.getText());
+        req.setString(9, s);
+        req.setDouble(10, Double.parseDouble(Honnoraires.getText()));
+        req.setString(11, Details.getText());
+        req.setString(12,Integer.toString(ListesAffaires.getIDtoMod()));
+        req.executeUpdate(); } 
+    catch (SQLException ex) {
+            Logger.getLogger(AjoutAffaire.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+    JOptionPane.showMessageDialog(null, "Affaire Modifié Avec Succés");
+        clearAll();
+            }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JTextField Avocat_Contre_ID;
     private static javax.swing.JTextField Client_ID;
-    private javax.swing.JTextArea Commentaire;
+    private static javax.swing.JTextArea Commentaire;
     private static javax.swing.JTextField Contre_ID;
-    private javax.swing.JTextArea Details;
-    private javax.swing.JTextField Honnoraires;
+    private static javax.swing.JTextArea Details;
+    private static javax.swing.JTextField Honnoraires;
     private static javax.swing.JTextField Juridiction_ID;
-    private javax.swing.JComboBox<String> Nature;
-    private javax.swing.JTextArea Objet;
-    private javax.swing.JComboBox<String> Qualite;
+    private static javax.swing.JComboBox<String> Nature;
+    private static javax.swing.JTextArea Objet;
+    private static javax.swing.JComboBox<String> Qualite;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private com.toedter.calendar.JDateChooser jDate;
+    private static javax.swing.JButton jButton5;
+    private static javax.swing.JButton jButton6;
+    private static com.toedter.calendar.JDateChooser jDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

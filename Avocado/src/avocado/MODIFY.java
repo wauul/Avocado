@@ -32,6 +32,9 @@ public class MODIFY extends javax.swing.JFrame {
     public MODIFY() {
         initComponents();
         if(from == 1) {AjoutClient t = new AjoutClient(); t.setVisibility(); AffichageTab(t);}
+        else if(from == 2) {AjoutConfrere t = new AjoutConfrere(); t.setVisibility(); AffichageTab(t);}
+        else if(from == 3) {AjoutAffaire t = new AjoutAffaire(); t.setVisibility(); AffichageTab(t);}
+        else if(from == 4) {AjoutAudience t = new AjoutAudience(); t.setVisibility(); AffichageTab(t);}
     }
     
     
@@ -99,7 +102,12 @@ public class MODIFY extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     if(from == 1) AjoutClient.updateC();
+    else if(from == 2) AjoutConfrere.UpdateC();
+    else if(from == 3) AjoutAffaire.updateA();
+    else if(from == 4) AjoutAudience.updateAud();
+
     this.dispose();
+    from = 0;
     // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 

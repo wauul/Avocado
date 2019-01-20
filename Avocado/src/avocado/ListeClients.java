@@ -129,7 +129,7 @@ public void AffichageClients(String s){
     if(s == null) AffichageClients();
     else {
     conn = Avocado.DBConn();
-        s = "%" + s + "%";
+        s = s + "%";
     String sql = "SELECT `Id_Cli`, `Nom_Cli`, `Prenom_Cli`, `DateNaiss_Cli`, `Ville`, `Add_Cli`, `Tel_Cli`, `Email_Cli`, `Type_CarteID`, `Num_CarteId`, `RaiSoc_Cli` FROM `client` WHERE Type_Cli = 'Client' AND `Nom_Cli` LIKE ?";
     try{
         req = conn.prepareStatement(sql);
@@ -176,7 +176,7 @@ public void AffichagePartieAdv(String s) {
     if(s== null) AffichagePartieAdv();
     else{
         conn = Avocado.DBConn();
-        s = "%" + s + "%";
+        s = s + "%";
     String sql = "SELECT `Id_Cli`, `Nom_Cli`, `Prenom_Cli`, `DateNaiss_Cli`, `Ville`, `Add_Cli`, `Tel_Cli`, `Email_Cli`, `Type_CarteID`, `Num_CarteId`, `RaiSoc_Cli` FROM `client` WHERE Type_Cli = 'Partie Adverse' AND `Nom_Cli` LIKE ?";
     try{
         req = conn.prepareStatement(sql);
@@ -374,7 +374,8 @@ public void AffichagePartieAdv(String s) {
         } catch (SQLException ex) {
             Logger.getLogger(ListeClients.class.getName()).log(Level.SEVERE, null, ex);}
         
-        
+                if(ClientMenu.getbtnC() == 1) AffichageClients();
+        else if(ClientMenu.getbtnC() == 2) AffichagePartieAdv();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -47,6 +47,43 @@ public static void AjoutC(){
         }
 }
 
+public static void UpdateC(){
+            Connection conn = null;
+        PreparedStatement req = null;
+        ResultSet res = null;
+
+        conn = Avocado.DBConn();
+        String sql = "UPDATE `confreres` SET `Type_Conf` = ?, `Nom_Conf` = ?, `Prenom_Conf` = ?, `Ville` = ?, `Add_Conf` = ?, `Tel_Conf` = ?, `Email_Conf` = ?, `Description` = ? WHERE `Id_Conf` = ?";
+        try{
+            req = conn.prepareStatement(sql);
+            req.setString(2, Nom.getText());
+            req.setString(3, Prenom.getText());
+            req.setString(4, Ville.getText());
+            req.setString(5, Adresse.getText());
+            req.setString(6, Tel.getText());
+            req.setString(7, Mail.getText());
+            req.setString(8, Com.getText());
+            req.setString(1, (String) TypeClient.getSelectedItem());
+            req.setString(9, Integer.toString(ListeConfreres.getIDtoMod()));
+            req.executeUpdate();        
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(AjoutAffaire.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
+
+
+public static void Modify(String TypeC, String NomC, String PrenomC,  String AdresseC, String VilleC, String TelC, String EmailC, String ComC){
+        Nom.setText(NomC);
+        Prenom.setText(PrenomC);
+        Adresse.setText(AdresseC);
+        Mail.setText(EmailC);
+        Com.setText(ComC);
+        Tel.setText(TelC);
+        Ville.setText(VilleC);
+        TypeClient.setSelectedItem(TypeC);  
+}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -331,7 +331,7 @@ public class AjoutAudience extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        Affichage();
+        AjoutAud();
         JOptionPane.showMessageDialog(null, "Audience Ajouté Avec Succés");
         Com.setText("");
         Confrere.setText("");
@@ -372,7 +372,7 @@ public class AjoutAudience extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     
-    public void Affichage(){
+    public void AjoutAud(){
                 Connection conn = null;
         PreparedStatement req = null;
         ResultSet res = null;
@@ -394,21 +394,63 @@ public class AjoutAudience extends javax.swing.JPanel {
             Logger.getLogger(AjoutAudience.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+    public static void setToModify(String Aff, String Jur, String Stat, String Res, String Sub, String Comm) {
+        Com.setText(Comm);
+        Confrere.setText(Sub);
+        Membre.setText(Res);
+        Statut.setSelectedItem(Stat);
+        Juridiction.setText(Jur);
+        Affaire.setText(Aff);
+    }
+    
+    
+    public static void updateAud() {
+                        Connection conn = null;
+        PreparedStatement req = null;
+        ResultSet res = null;
+           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+           String s= dateFormat.format(Date.getDate());
+        conn = Avocado.DBConn();
+        String sql = "UPDATE `audiences` SET `Id_Aff` = ?, `Id_Juri` = ?, `Date_Aud` = ?, `Statut_Aud` = ?, `Id_Resp` = ?, `Id_Sub` = ?, `Comm_Aud` = ? WHERE Id_Aud = ?";
+        try{
+            req = conn.prepareStatement(sql);
+            req.setString(1, Affaire.getText());
+            req.setString(2, Juridiction.getText());
+            req.setString(3, s);
+            req.setString(4, (String) Statut.getSelectedItem());
+            req.setString(5, Membre.getText());
+            req.setString(6, Confrere.getText());
+            req.setString(7, Com.getText());
+            req.setString(8,Integer.toString(ListeAudiences.getIDtoMod()));
+            req.executeUpdate(); } 
+        catch (SQLException ex) {
+            Logger.getLogger(AjoutAudience.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+       
+            public static void setVisibility(){
+        jButton6.setVisible(false);
+        jButton5.setVisible(false);
+    }
+         
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JTextField Affaire;
-    private javax.swing.JTextField Com;
+    private static javax.swing.JTextField Com;
     private static javax.swing.JTextField Confrere;
-    private com.toedter.calendar.JDateChooser Date;
+    private static com.toedter.calendar.JDateChooser Date;
     private static javax.swing.JTextField Juridiction;
     private static javax.swing.JTextField Membre;
-    private javax.swing.JComboBox<String> Statut;
+    private static javax.swing.JComboBox<String> Statut;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private static javax.swing.JButton jButton5;
+    private static javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel15;
